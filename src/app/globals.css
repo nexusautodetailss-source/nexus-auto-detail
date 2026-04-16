@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+:root {
+  --navy: #030A14;
+  --navy2: #061020;
+  --blue: #1AAEDE;
+  --cyan: #00D4FF;
+  --orange: #AA1200;
+  --hot: #EE1A00;
+  --white: #F0F8FF;
+  --gray: #8899AA;
+  --border: rgba(26,174,222,0.15);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: auto; }
+body {
+  background: var(--navy);
+  color: var(--white);
+  font-family: 'Inter', system-ui, sans-serif;
+  overflow-x: hidden;
+  cursor: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* cursor */
+#cur-dot { position:fixed;width:10px;height:10px;background:var(--cyan);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:background .15s,transform .1s;mix-blend-mode:screen; }
+#cur-ring { position:fixed;width:42px;height:42px;border:1.5px solid rgba(0,212,255,.35);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .2s,height .2s,border-color .2s; }
+
+/* display font */
+.D { font-family:var(--font-barlow),'Barlow Condensed',system-ui,sans-serif;font-weight:900;text-transform:uppercase;line-height:.9; }
+.OL { font-size:.62rem;font-weight:800;letter-spacing:.45em;text-transform:uppercase;color:var(--blue); }
+.OL-hero { font-size:.82rem;font-weight:800;letter-spacing:.5em;text-transform:uppercase;color:var(--blue); }
+
+/* glows */
+.glow-blue { box-shadow:0 0 40px rgba(26,174,222,.4),0 0 80px rgba(26,174,222,.15); }
+.glow-orange { box-shadow:0 0 40px rgba(198,51,0,.45),0 0 80px rgba(255,69,0,.15); }
+.text-glow { text-shadow:0 0 30px rgba(26,174,222,.6); }
+
+/* gradient text */
+.g-blue { background:linear-gradient(135deg,var(--cyan),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
+.g-fire { background:linear-gradient(135deg,#FF8C00,var(--hot),var(--orange));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
+
+/* buttons */
+.btn { display:inline-flex;align-items:center;gap:10px;padding:16px 40px;border-radius:100px;font-weight:700;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:all .3s;white-space:nowrap; }
+.btn-blue { background:var(--blue);color:#fff;box-shadow:0 4px 30px rgba(26,174,222,.35); }
+.btn-blue:hover { transform:translateY(-3px);box-shadow:0 8px 50px rgba(26,174,222,.5); }
+.btn-ghost { border:1.5px solid rgba(26,174,222,.4);color:var(--blue); }
+.btn-ghost:hover { background:rgba(26,174,222,.08);border-color:var(--blue); }
+.btn-orange { background:var(--orange);color:#fff;box-shadow:0 4px 30px rgba(198,51,0,.35); }
+.btn-orange:hover { transform:translateY(-3px);box-shadow:0 8px 50px rgba(198,51,0,.5); }
+
+/* section */
+.S { padding:120px 6vw; }
+@media(max-width:768px){.S{padding:72px 5vw;}body{cursor:auto;}#cur-dot,#cur-ring{display:none;}}
+
+/* glass card */
+.gc { background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:20px;backdrop-filter:blur(12px); }
+
+/* rule */
+.rule { height:1px;background:linear-gradient(90deg,transparent,var(--blue),transparent); }
+
+/* marquee */
+@keyframes marq { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+.marq-inner { animation:marq 28s linear infinite;display:flex;width:max-content; }
+.marq-inner:hover { animation-play-state:paused; }
+
+/* keyframes */
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
+@keyframes pulse-ring{0%{transform:scale(1);opacity:.6}100%{transform:scale(2.2);opacity:0}}
+@keyframes water-rise{from{transform:scaleY(0);transform-origin:bottom}to{transform:scaleY(1);transform-origin:bottom}}
+@keyframes drop{0%{transform:translateY(-20px);opacity:0}30%{opacity:1}100%{transform:translateY(80px);opacity:0}}
+@keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
+
+.float{animation:float 5s ease-in-out infinite;}
+.shimmer-text{background:linear-gradient(90deg,var(--white) 0%,var(--cyan) 30%,var(--white) 60%,var(--white) 100%);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 4s linear infinite;}
