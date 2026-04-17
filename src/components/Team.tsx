@@ -143,7 +143,7 @@ export default function Team() {
             style={{ animationDuration: "3.5s" }} />
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/fotos/sin-fondo-mama-chido.png"
+            src="/fotos/enviar.png"
             alt="Chido & Adela"
             className="float relative z-10"
             style={{

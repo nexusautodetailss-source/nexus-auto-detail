@@ -73,31 +73,38 @@ const SERVICES: Service[] = [
 
 function ServiceCard({ svc, index }: { svc: Service; index: number }) {
   const { T } = useLang();
-  const [hovered, setHovered] = useState(false);
+  const [active, setActive] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
 
   const bookMsg = encodeURIComponent(`Hi! I'm interested in the ${svc.name.en} service from Nexus Auto Detail.`);
 
+  function handleTouchEnd(e: React.TouchEvent) {
+    e.preventDefault();
+    setActive(prev => !prev);
+  }
+
   return (
     <div
       ref={cardRef}
-      className="service-card relative cursor-pointer group"
+      className="service-card relative cursor-pointer"
       style={{
         aspectRatio: "3/4",
         clipPath: "inset(0 round 16px)",
-        transition: "transform .4s cubic-bezier(.34,1.56,.64,1), box-shadow .4s ease, clip-path .4s ease",
+        transition: "transform .4s cubic-bezier(.34,1.56,.64,1), box-shadow .4s ease",
         animationDelay: `${index * 0.1}s`,
         willChange: "transform",
       }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
+      onMouseEnter={() => setActive(true)}
+      onMouseLeave={() => setActive(false)}
+      onTouchEnd={handleTouchEnd}
     >
       {/* Background photo */}
       <Image
         src={svc.photo}
         alt={T(svc.name)}
         fill
-        className="object-cover transition-transform duration-700 group-hover:scale-110"
+        className="object-cover transition-transform duration-700"
+        style={{ transform: active ? "scale(1.08)" : "scale(1)" }}
       />
 
       {/* Video — autoplay, above photo */}
@@ -112,7 +119,10 @@ function ServiceCard({ svc, index }: { svc: Service; index: number }) {
       )}
 
       {/* Default gradient */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[#030A14] via-[#030A14]/30 to-transparent transition-opacity duration-400 group-hover:opacity-60" style={{ zIndex: 2 }} />
+      <div
+        className="absolute inset-0 bg-gradient-to-t from-[#030A14] via-[#030A14]/30 to-transparent transition-opacity duration-400"
+        style={{ zIndex: 2, opacity: active ? 0.5 : 1 }}
+      />
 
       {/* Tag badge */}
       <div className="absolute top-4 left-4 z-20">
@@ -122,31 +132,46 @@ function ServiceCard({ svc, index }: { svc: Service; index: number }) {
       </div>
 
       {/* Default state — title at bottom */}
-      <div className="absolute bottom-0 left-0 right-0 px-6 pb-10 z-20 text-center group-hover:-translate-y-2 transition-transform duration-400">
-        <div className="D text-[1.8rem] text-[var(--white)] leading-tight">{T(svc.name).toUpperCase()}</div>
+      <div
+        className="absolute bottom-0 left-0 right-0 px-6 pb-10 z-20 text-center transition-transform duration-400"
+        style={{ transform: active ? "translateY(-8px)" : "" }}
+      >
+        <div className="D text-[clamp(1.3rem,4vw,1.8rem)] text-[var(--white)] leading-tight">
+          {T(svc.name).toUpperCase()}
+        </div>
       </div>
 
-      {/* Hover reveal panel — slides down from top */}
-      <div className="absolute inset-0 z-30 flex flex-col items-center justify-center text-center p-7
-        -translate-y-full group-hover:translate-y-0
-        transition-transform duration-500 ease-[cubic-bezier(.34,1.2,.64,1)]"
-        style={{ background: "rgba(3,10,20,0.94)" }}
+      {/* Touch/Hover reveal panel */}
+      <div
+        className="absolute inset-0 z-30 flex flex-col items-center justify-center text-center transition-transform duration-500"
+        style={{
+          background: "rgba(3,10,20,0.94)",
+          transform: active ? "translateY(0)" : "translateY(-100%)",
+          padding: "clamp(16px, 4vw, 28px)",
+          overflowY: "auto",
+        }}
       >
+        {/* Close hint on mobile */}
+        <div className="md:hidden absolute top-3 right-4 text-[.65rem] text-[rgba(26,174,222,.6)] tracking-widest uppercase">
+          {T({ en: "tap to close", es: "toca para cerrar" })}
+        </div>
+
         {/* Title */}
-        <div className="D text-[1.8rem] g-blue leading-tight mb-4">{T(svc.name).toUpperCase()}</div>
+        <div className="D text-[clamp(1.3rem,4vw,1.8rem)] g-blue leading-tight mb-3">
+          {T(svc.name).toUpperCase()}
+        </div>
 
         {/* Description */}
-        <p className="text-[1.05rem] text-[var(--gray)] leading-relaxed mb-5">{T(svc.desc)}</p>
+        <p className="text-[clamp(.85rem,2.5vw,1.05rem)] text-[var(--gray)] leading-relaxed mb-4">
+          {T(svc.desc)}
+        </p>
 
-        {/* Features — animated pills */}
-        <div className="flex flex-wrap justify-center gap-2 mb-6">
+        {/* Features */}
+        <div className="flex flex-wrap justify-center gap-2 mb-5">
           {svc.features.map((f, i) => (
             <span
               key={i}
-              className="px-3 py-1.5 rounded-full text-[.82rem] font-semibold tracking-wide border border-[rgba(26,174,222,.35)] text-[var(--cyan)] bg-[rgba(26,174,222,.08)]"
-              style={{
-                animation: hovered ? `pillPop .4s cubic-bezier(.34,1.56,.64,1) ${i * 0.07}s both` : "none",
-              }}
+              className="px-3 py-1.5 rounded-full text-[.78rem] font-semibold tracking-wide border border-[rgba(26,174,222,.35)] text-[var(--cyan)] bg-[rgba(26,174,222,.08)]"
             >
               {T(f)}
             </span>
@@ -159,14 +184,18 @@ function ServiceCard({ svc, index }: { svc: Service; index: number }) {
           target="_blank" rel="noreferrer"
           className="btn btn-blue w-full justify-center py-3"
           onClick={e => e.stopPropagation()}
+          onTouchEnd={e => e.stopPropagation()}
         >
           <MessageCircle size={14} />
           {T({ en: "Book This", es: "Reservar" })}
         </a>
       </div>
 
-      {/* Border glow on hover */}
-      <div className="absolute inset-0 rounded-2xl border border-transparent group-hover:border-[rgba(26,174,222,.4)] transition-colors duration-400 pointer-events-none z-40" />
+      {/* Border glow */}
+      <div
+        className="absolute inset-0 rounded-2xl border transition-colors duration-400 pointer-events-none z-40"
+        style={{ borderColor: active ? "rgba(26,174,222,.4)" : "transparent" }}
+      />
     </div>
   );
 }
@@ -219,7 +248,8 @@ export default function Services() {
             ))}
           </div>
           <span className="text-[.75rem] font-semibold tracking-[.3em] uppercase text-[var(--blue)] opacity-70">
-            {T({ en: "Hover to explore", es: "Pasa el cursor" })}
+            <span className="md:hidden">{T({ en: "Tap to explore", es: "Toca para ver más" })}</span>
+            <span className="hidden md:inline">{T({ en: "Hover to explore", es: "Pasa el cursor" })}</span>
           </span>
           <div className="flex gap-1.5 items-center">
             {[0,1,2].map(i => (
