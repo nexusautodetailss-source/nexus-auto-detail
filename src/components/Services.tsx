@@ -8,8 +8,10 @@ interface Service {
   id: string;
   name: { en: string; es: string };
   photo: string;
-  features: { en: string; es: string }[];
+  video?: string;
+  tag: { en: string; es: string };
   desc: { en: string; es: string };
+  features: { en: string; es: string }[];
 }
 
 const SERVICES: Service[] = [
@@ -17,89 +19,162 @@ const SERVICES: Service[] = [
     id: "exterior",
     name: { en: "Exterior Detail", es: "Detalle Exterior" },
     photo: "/fotos/_74A0599.jpg",
-    desc: { en: "Full exterior treatment — your car will shine like new.", es: "Tratamiento exterior completo — tu auto brillará como nuevo." },
-    features: [
-      { en: "Hand wash", es: "Lavado a mano" },
-      { en: "Clay bar treatment", es: "Arcilla descontaminante" },
-      { en: "Wheel & tire detail", es: "Detalle de rines y llanta" },
-      { en: "Window cleaning", es: "Limpieza de ventanas" },
-      { en: "Trim dressing", es: "Acondicionador de molduras" },
-    ],
+    video: "/videos/exterior/clip-web.mp4",
+    tag: { en: "Most Popular", es: "Más Popular" },
+    desc: { en: "Full exterior treatment — hand wash, clay bar, wheel detail, trim dressing & window cleaning. Your car will shine like new.", es: "Tratamiento exterior completo — lavado a mano, arcilla, rines, molduras y ventanas. Tu auto brillará como nuevo." },
+    features: [{ en: "Hand wash", es: "Lavado a mano" }, { en: "Clay bar", es: "Arcilla" }, { en: "Wheel detail", es: "Rines" }, { en: "Window cleaning", es: "Ventanas" }],
   },
   {
     id: "interior",
     name: { en: "Interior Detail", es: "Detalle Interior" },
     photo: "/fotos/_74A0676.jpg",
-    desc: { en: "Deep clean for every inch inside your vehicle.", es: "Limpieza profunda de cada rincón de tu vehículo." },
-    features: [
-      { en: "Deep vacuum", es: "Aspirado profundo" },
-      { en: "Seat conditioning", es: "Acondicionamiento de asientos" },
-      { en: "Dashboard cleaning", es: "Limpieza del tablero" },
-      { en: "Odor elimination", es: "Eliminación de olores" },
-      { en: "Door panels", es: "Paneles de puerta" },
-    ],
+    video: "/videos/interior/clip-web.mp4",
+    tag: { en: "Deep Clean", es: "Limpieza Profunda" },
+    desc: { en: "Deep clean for every inch inside — vacuum, seat conditioning, dashboard, odor elimination & door panels.", es: "Limpieza profunda de cada rincón — aspirado, asientos, tablero, olores y paneles de puerta." },
+    features: [{ en: "Deep vacuum", es: "Aspirado" }, { en: "Seat conditioning", es: "Asientos" }, { en: "Odor removal", es: "Olores" }, { en: "Dashboard", es: "Tablero" }],
   },
   {
     id: "full",
     name: { en: "Full Detail", es: "Detalle Completo" },
     photo: "/fotos/_74A0685.jpg",
-    desc: { en: "The ultimate head-to-toe transformation.", es: "La transformación definitiva de pies a cabeza." },
-    features: [
-      { en: "Everything interior + exterior", es: "Interior + exterior completo" },
-      { en: "Machine polish", es: "Pulido a máquina" },
-      { en: "Engine bay cleaning", es: "Limpieza de compartimento de motor" },
-      { en: "Paint decontamination", es: "Descontaminación de pintura" },
-      { en: "Final inspection", es: "Inspección final" },
-    ],
+    video: "/videos/full-detail/clip-web.mp4",
+    tag: { en: "Best Value", es: "Mejor Valor" },
+    desc: { en: "The ultimate head-to-toe transformation — interior + exterior + machine polish + engine bay.", es: "La transformación definitiva — interior + exterior + pulido a máquina + motor." },
+    features: [{ en: "Interior + exterior", es: "Int. + ext." }, { en: "Machine polish", es: "Pulido" }, { en: "Engine bay", es: "Motor" }, { en: "Final inspection", es: "Inspección" }],
   },
   {
     id: "wax",
     name: { en: "Wash & Wax", es: "Lavado y Encerado" },
     photo: "/fotos/_74A0603-1.jpg",
-    desc: { en: "Protection and shine that lasts for weeks.", es: "Protección y brillo que dura semanas." },
-    features: [
-      { en: "Premium wash", es: "Lavado premium" },
-      { en: "Carnauba wax coat", es: "Capa de cera carnauba" },
-      { en: "UV protection", es: "Protección UV" },
-      { en: "Chrome polish", es: "Pulido de cromados" },
-      { en: "Tire shine", es: "Brillo de llantas" },
-    ],
+    video: "/videos/wash-wax/clip-web.mp4",
+    tag: { en: "Protection", es: "Protección" },
+    desc: { en: "Premium wash + carnauba wax coat. UV protection and lasting shine that holds for weeks.", es: "Lavado premium + cera carnauba. Protección UV y brillo duradero que se mantiene por semanas." },
+    features: [{ en: "Premium wash", es: "Lavado" }, { en: "Carnauba wax", es: "Cera carnauba" }, { en: "UV protection", es: "Protección UV" }, { en: "Tire shine", es: "Llantas" }],
   },
   {
     id: "headlight",
     name: { en: "Headlight Restoration", es: "Restauración de Faros" },
     photo: "/fotos/DJI_20260414232837_0055_D.jpg",
-    desc: { en: "Crystal clear headlights restored in one visit.", es: "Faros cristalinos restaurados en una visita." },
-    features: [
-      { en: "Oxidation removal", es: "Eliminación de oxidación" },
-      { en: "Multi-stage sanding", es: "Lijado de múltiples etapas" },
-      { en: "UV sealant coat", es: "Sellador UV" },
-      { en: "Clarity restored", es: "Claridad restaurada" },
-      { en: "Improved visibility", es: "Mejor visibilidad" },
-    ],
+    video: "/videos/headlight/clip-web.mp4",
+    tag: { en: "Visibility", es: "Visibilidad" },
+    desc: { en: "Crystal-clear headlights restored in one visit. Oxidation removed, UV sealed, clarity back.", es: "Faros cristalinos restaurados en una visita. Oxidación eliminada, sellado UV, claridad recuperada." },
+    features: [{ en: "Oxidation removal", es: "Oxidación" }, { en: "Multi-stage sand", es: "Lijado" }, { en: "UV sealant", es: "Sellador UV" }, { en: "Clarity restored", es: "Claridad" }],
   },
   {
     id: "ceramic",
     name: { en: "Ceramic Coating", es: "Recubrimiento Cerámico" },
-    photo: "/anim1/clean.png",
-    desc: { en: "Military-grade ceramic protection that lasts years.", es: "Protección cerámica de grado militar que dura años." },
-    features: [
-      { en: "9H hardness rating", es: "Dureza nivel 9H" },
-      { en: "Hydrophobic surface", es: "Superficie hidrofóbica" },
-      { en: "UV + scratch resistant", es: "Resistente a UV y rayones" },
-      { en: "2–5 year durability", es: "Durabilidad 2–5 años" },
-      { en: "Deep gloss finish", es: "Acabado con brillo profundo" },
-    ],
+    photo: "/fotos/_74A0590-1.jpg",
+    video: "/videos/ceramic/clip-web.mp4",
+    tag: { en: "Premium", es: "Premium" },
+    desc: { en: "Military-grade 9H ceramic protection. Hydrophobic, UV resistant, scratch resistant. Lasts 2–5 years.", es: "Protección cerámica 9H grado militar. Hidrofóbica, resistente a UV y rayones. Dura 2–5 años." },
+    features: [{ en: "9H hardness", es: "Dureza 9H" }, { en: "Hydrophobic", es: "Hidrofóbica" }, { en: "UV resistant", es: "Anti-UV" }, { en: "2–5 yr durability", es: "2–5 años" }],
   },
 ];
 
+function ServiceCard({ svc, index }: { svc: Service; index: number }) {
+  const { T } = useLang();
+  const [hovered, setHovered] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  const bookMsg = encodeURIComponent(`Hi! I'm interested in the ${svc.name.en} service from Nexus Auto Detail.`);
+
+  return (
+    <div
+      ref={cardRef}
+      className="service-card relative cursor-pointer group"
+      style={{
+        aspectRatio: "3/4",
+        clipPath: "inset(0 round 16px)",
+        transition: "transform .4s cubic-bezier(.34,1.56,.64,1), box-shadow .4s ease, clip-path .4s ease",
+        animationDelay: `${index * 0.1}s`,
+        willChange: "transform",
+      }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      {/* Background photo */}
+      <Image
+        src={svc.photo}
+        alt={T(svc.name)}
+        fill
+        className="object-cover transition-transform duration-700 group-hover:scale-110"
+      />
+
+      {/* Video — autoplay, above photo */}
+      {svc.video && (
+        <video
+          autoPlay muted loop playsInline preload="auto"
+          className="absolute inset-0 w-full h-full object-cover object-center"
+          style={{ zIndex: 1 }}
+        >
+          <source src={svc.video} type="video/mp4" />
+        </video>
+      )}
+
+      {/* Default gradient */}
+      <div className="absolute inset-0 bg-gradient-to-t from-[#030A14] via-[#030A14]/30 to-transparent transition-opacity duration-400 group-hover:opacity-60" style={{ zIndex: 2 }} />
+
+      {/* Tag badge */}
+      <div className="absolute top-4 left-4 z-20">
+        <span className="OL text-[.6rem] bg-[rgba(26,174,222,.15)] border border-[rgba(26,174,222,.35)] backdrop-blur-sm px-3 py-1 rounded-full text-[var(--blue)]">
+          {T(svc.tag)}
+        </span>
+      </div>
+
+      {/* Default state — title at bottom */}
+      <div className="absolute bottom-0 left-0 right-0 px-6 pb-10 z-20 text-center group-hover:-translate-y-2 transition-transform duration-400">
+        <div className="D text-[1.8rem] text-[var(--white)] leading-tight">{T(svc.name).toUpperCase()}</div>
+      </div>
+
+      {/* Hover reveal panel — slides down from top */}
+      <div className="absolute inset-0 z-30 flex flex-col items-center justify-center text-center p-7
+        -translate-y-full group-hover:translate-y-0
+        transition-transform duration-500 ease-[cubic-bezier(.34,1.2,.64,1)]"
+        style={{ background: "rgba(3,10,20,0.94)" }}
+      >
+        {/* Title */}
+        <div className="D text-[1.8rem] g-blue leading-tight mb-4">{T(svc.name).toUpperCase()}</div>
+
+        {/* Description */}
+        <p className="text-[1.05rem] text-[var(--gray)] leading-relaxed mb-5">{T(svc.desc)}</p>
+
+        {/* Features — animated pills */}
+        <div className="flex flex-wrap justify-center gap-2 mb-6">
+          {svc.features.map((f, i) => (
+            <span
+              key={i}
+              className="px-3 py-1.5 rounded-full text-[.82rem] font-semibold tracking-wide border border-[rgba(26,174,222,.35)] text-[var(--cyan)] bg-[rgba(26,174,222,.08)]"
+              style={{
+                animation: hovered ? `pillPop .4s cubic-bezier(.34,1.56,.64,1) ${i * 0.07}s both` : "none",
+              }}
+            >
+              {T(f)}
+            </span>
+          ))}
+        </div>
+
+        {/* CTA */}
+        <a
+          href={`https://wa.me/16788826689?text=${bookMsg}`}
+          target="_blank" rel="noreferrer"
+          className="btn btn-blue w-full justify-center py-3"
+          onClick={e => e.stopPropagation()}
+        >
+          <MessageCircle size={14} />
+          {T({ en: "Book This", es: "Reservar" })}
+        </a>
+      </div>
+
+      {/* Border glow on hover */}
+      <div className="absolute inset-0 rounded-2xl border border-transparent group-hover:border-[rgba(26,174,222,.4)] transition-colors duration-400 pointer-events-none z-40" />
+    </div>
+  );
+}
+
 export default function Services() {
   const { T } = useLang();
-  const [active, setActive] = useState(0);
-  const [animating, setAnimating] = useState(false);
-  const photoRef = useRef<HTMLDivElement>(null);
-  const textRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
+  const gridRef    = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     let ctx: { revert: () => void } | null = null;
@@ -108,139 +183,62 @@ export default function Services() {
       const { ScrollTrigger } = await import("gsap/ScrollTrigger");
       gsap.registerPlugin(ScrollTrigger);
       ctx = gsap.context(() => {
-        gsap.fromTo(sectionRef.current, { opacity: 0 }, {
-          opacity: 1, duration: 0.8,
-          scrollTrigger: { trigger: sectionRef.current, start: "top 85%" },
-        });
+        gsap.fromTo(
+          gridRef.current?.querySelectorAll(".service-card") ?? [],
+          { y: 60, opacity: 0, scale: 0.9 },
+          {
+            y: 0, opacity: 1, scale: 1,
+            duration: 0.7, stagger: 0.1, ease: "power3.out",
+            scrollTrigger: { trigger: gridRef.current, start: "top 80%" },
+          }
+        );
       });
     }
     init();
     return () => ctx?.revert();
   }, []);
 
-  const changeService = async (idx: number) => {
-    if (idx === active || animating) return;
-    setAnimating(true);
-    const { default: gsap } = await import("gsap");
-    gsap.to([photoRef.current, textRef.current], {
-      opacity: 0, y: 20, duration: 0.3, onComplete: () => {
-        setActive(idx);
-        gsap.to([photoRef.current, textRef.current], { opacity: 1, y: 0, duration: 0.5, delay: 0.05 });
-        setAnimating(false);
-      }
-    });
-  };
-
-  const svc = SERVICES[active];
-  const bookMsg = encodeURIComponent(`Hi! I'm interested in ${svc.name.en} service from Nexus Auto Detail.`);
-
   return (
-    <section id="services" ref={sectionRef} className="relative bg-[var(--navy)]">
-      <div className="S">
-        <div className="OL mb-3">{T({ en: "What We Do", es: "Lo Que Hacemos" })}</div>
-        <h2 className="D text-[clamp(2.5rem,6vw,5rem)] text-[var(--white)] mb-12">
-          {T({ en: "OUR SERVICES", es: "NUESTROS SERVICIOS" })}
-        </h2>
-      </div>
+    <section id="services" ref={sectionRef} className="relative" style={{ background: "rgba(3,10,20,0.88)", backdropFilter: "blur(2px)" }}>
+      <div className="S flex flex-col items-center">
 
-      {/* Desktop: sidebar + showcase */}
-      <div className="hidden md:flex h-[80vh] min-h-[600px] max-h-[900px]">
-        {/* Sidebar */}
-        <div className="w-[300px] flex-shrink-0 border-r border-[var(--border)] flex flex-col justify-center px-8 gap-2 bg-[var(--navy2)]">
-          {SERVICES.map((s, i) => (
-            <button
-              key={s.id}
-              onClick={() => changeService(i)}
-              className={`text-left px-4 py-4 rounded-xl transition-all duration-300 ${
-                active === i
-                  ? "bg-[rgba(26,174,222,.12)] border-l-2 border-[var(--blue)] pl-6"
-                  : "hover:bg-[rgba(255,255,255,.04)]"
-              }`}
-            >
-              <span className={`D text-[1.4rem] ${active === i ? "text-[var(--blue)]" : "text-[var(--gray)]"}`}>
-                {T(s.name)}
-              </span>
-            </button>
+        {/* Header */}
+        <div className="text-center mb-14">
+          <div className="OL mb-3">{T({ en: "What We Do", es: "Lo Que Hacemos" })}</div>
+          <h2 className="D text-[clamp(3rem,7vw,6rem)] text-[var(--white)]">
+            {T({ en: "OUR SERVICES", es: "NUESTROS SERVICIOS" })}
+          </h2>
+        </div>
+
+        {/* Floating hint */}
+        <div className="flex items-center justify-center gap-3 mb-10">
+          <div className="flex gap-1.5 items-center">
+            {[0,1,2].map(i => (
+              <span key={i} className="block w-1.5 h-1.5 rounded-full bg-[var(--blue)]"
+                style={{ animation: `bounce 1.2s ease-in-out ${i * 0.2}s infinite` }} />
+            ))}
+          </div>
+          <span className="text-[.75rem] font-semibold tracking-[.3em] uppercase text-[var(--blue)] opacity-70">
+            {T({ en: "Hover to explore", es: "Pasa el cursor" })}
+          </span>
+          <div className="flex gap-1.5 items-center">
+            {[0,1,2].map(i => (
+              <span key={i} className="block w-1.5 h-1.5 rounded-full bg-[var(--blue)]"
+                style={{ animation: `bounce 1.2s ease-in-out ${(2-i) * 0.2}s infinite` }} />
+            ))}
+          </div>
+        </div>
+
+        {/* Grid */}
+        <div
+          ref={gridRef}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 w-full max-w-[1200px]"
+        >
+          {SERVICES.map((svc, i) => (
+            <ServiceCard key={svc.id} svc={svc} index={i} />
           ))}
         </div>
 
-        {/* Photo showcase */}
-        <div ref={photoRef} className="flex-1 relative overflow-hidden">
-          <Image
-            src={svc.photo}
-            alt={T(svc.name)}
-            fill
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#030A14]/80 via-[#030A14]/30 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#030A14] via-transparent to-transparent" />
-
-          <div ref={textRef} className="absolute inset-0 flex flex-col justify-end p-12">
-            <div className="OL mb-2">{T({ en: "Service", es: "Servicio" })}</div>
-            <div className="D text-[clamp(3rem,6vw,5.5rem)] text-[var(--white)] leading-[.88] mb-4">
-              {T(svc.name).toUpperCase()}
-            </div>
-            <p className="text-[var(--gray)] mb-6 max-w-[400px]">{T(svc.desc)}</p>
-            <div className="grid grid-cols-2 gap-2 mb-8 max-w-[420px]">
-              {svc.features.map((f, i) => (
-                <div key={i} className="flex items-center gap-2">
-                  <Check size={14} className="text-[var(--blue)] flex-shrink-0" />
-                  <span className="text-[.8rem] text-[var(--white)]">{T(f)}</span>
-                </div>
-              ))}
-            </div>
-            <a
-              href={`https://wa.me/16788826689?text=${bookMsg}`}
-              target="_blank"
-              rel="noreferrer"
-              className="btn btn-blue w-fit"
-            >
-              <MessageCircle size={16} />
-              {T({ en: "Book This Service", es: "Reservar Servicio" })}
-            </a>
-          </div>
-        </div>
-      </div>
-
-      {/* Mobile: accordion cards */}
-      <div className="md:hidden px-5vw space-y-4 pb-20 px-5">
-        {SERVICES.map((s, i) => (
-          <div key={s.id} className="gc overflow-hidden rounded-2xl">
-            <button
-              onClick={() => setActive(active === i ? -1 : i)}
-              className="w-full flex items-center justify-between px-5 py-4"
-            >
-              <span className={`D text-[1.4rem] ${active === i ? "text-[var(--blue)]" : "text-[var(--white)]"}`}>
-                {T(s.name)}
-              </span>
-              <span className={`text-xl transition-transform ${active === i ? "rotate-45" : ""} text-[var(--blue)]`}>+</span>
-            </button>
-            {active === i && (
-              <div className="px-5 pb-5">
-                <div className="relative w-full aspect-video rounded-xl overflow-hidden mb-4">
-                  <Image src={s.photo} alt={T(s.name)} fill className="object-cover" />
-                </div>
-                <p className="text-[var(--gray)] text-sm mb-4">{T(s.desc)}</p>
-                <div className="space-y-2">
-                  {s.features.map((f, fi) => (
-                    <div key={fi} className="flex items-center gap-2">
-                      <Check size={13} className="text-[var(--blue)]" />
-                      <span className="text-[.8rem] text-[var(--white)]">{T(f)}</span>
-                    </div>
-                  ))}
-                </div>
-                <a
-                  href={`https://wa.me/16788826689?text=${encodeURIComponent(`Hi! I'm interested in ${s.name.en}`)}`}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="btn btn-blue mt-5 w-full justify-center"
-                >
-                  {T({ en: "Book Now", es: "Reservar" })}
-                </a>
-              </div>
-            )}
-          </div>
-        ))}
       </div>
     </section>
   );

@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useRef } from "react";
-import Image from "next/image";
 import { useLang } from "@/lib/LangContext";
 import { ChevronDown } from "lucide-react";
 
@@ -18,7 +17,6 @@ const AWARDS = [
 export default function Hero() {
   const { T } = useLang();
   const headRef = useRef<HTMLDivElement>(null);
-  const imgRef = useRef<HTMLDivElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
   const olRef = useRef<HTMLDivElement>(null);
 
@@ -35,109 +33,83 @@ export default function Hero() {
             { y: 0, opacity: 1, duration: 1, stagger: 0.12 },
             "-=0.4"
           )
-          .fromTo(ctaRef.current, { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, "-=0.3")
-          .fromTo(imgRef.current, { x: 80, opacity: 0, rotate: 2 }, { x: 0, opacity: 1, rotate: 0, duration: 1.2 }, "-=1");
+          .fromTo(ctaRef.current, { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, "-=0.3");
       });
     }
     init();
     return () => ctx?.revert();
   }, []);
 
-  const bookMsg = encodeURIComponent("Hi! I'd like to book an appointment with Nexus Auto Detail.");
-  const waUrl = `https://wa.me/16788826689?text=${bookMsg}`;
-
   return (
-    <section className="relative w-full min-h-screen flex items-center overflow-hidden">
-      {/* Video BG */}
-      <video
-        src="/videos/v1-web.mp4"
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover opacity-35"
-      />
-
-      {/* Overlays */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#030A14] via-transparent to-[#030A14]" />
-      <div className="absolute inset-0 bg-gradient-to-r from-[#030A14] via-transparent to-transparent opacity-70" />
+    <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Gradient edges so the hero fades cleanly into sections below */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#030A14]/70 via-transparent to-[#030A14]" />
       {/* Blue radial glow */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <div className="w-[900px] h-[600px] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(26,174,222,0.12)_0%,transparent_70%)]" />
+        <div className="w-[900px] h-[600px] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(26,174,222,0.18)_0%,transparent_70%)]" />
       </div>
 
-      {/* Content */}
-      <div className="relative z-10 w-full px-[6vw] pt-24 pb-16 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        {/* LEFT */}
-        <div>
-          {/* Logo — only the image, no text */}
-          <div ref={olRef} className="mb-6">
-            <Image
-              src="/logo-sin-titulo-sm.png"
-              alt="Nexus Auto Detail"
-              width={260}
-              height={145}
-              className="w-[clamp(180px,22vw,280px)] h-auto object-contain"
-              priority
-            />
+      {/* Content — centered */}
+      <div className="relative z-10 w-full px-[6vw] pt-28 pb-16 flex flex-col items-center text-center max-w-5xl mx-auto">
+
+        {/* Logo */}
+        <div ref={olRef} className="mb-6">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/logo-sin-titulo-final.png"
+            alt="Nexus Auto Detail"
+            className="w-[clamp(200px,28vw,320px)] h-auto object-contain"
+            style={{ mixBlendMode: "screen" }}
+          />
+        </div>
+
+        {/* Overline */}
+        <div className="OL-hero mb-6">
+          {T({ en: "Lawrenceville, GA · Est. 2010", es: "Lawrenceville, GA · Desde 2010" })}
+        </div>
+
+        {/* Headline */}
+        <div ref={headRef}>
+          <div className="D anim-line text-[clamp(5rem,14vw,13rem)] text-glow leading-[.85] g-blue">
+            NEXUS
           </div>
-
-          {/* Overline */}
-          <div className="OL-hero mb-5">
-            {T({ en: "Lawrenceville, GA · Est. 2010", es: "Lawrenceville, GA · Desde 2010" })}
+          <div className="D anim-line text-[clamp(3.5rem,9vw,9rem)] text-[var(--white)] leading-[.9]">
+            AUTO DETAIL
           </div>
-
-          <div ref={headRef}>
-            <div className="D anim-line text-[clamp(5rem,14vw,13rem)] text-glow leading-[.85] g-blue">
-              NEXUS
-            </div>
-            <div className="D anim-line text-[clamp(3.5rem,9vw,9rem)] text-[var(--white)] leading-[.9]">
-              AUTO DETAIL
-            </div>
-            <div className="D anim-line text-[clamp(2.5rem,6vw,5.5rem)] g-fire mt-2">
-              {T({ en: "WE COME TO YOU", es: "VAMOS A TI" })}
-            </div>
-          </div>
-
-          <p className="mt-6 text-[var(--gray)] text-[1rem] leading-relaxed max-w-[480px]">
-            {T({
-              en: "Premium mobile auto detailing by Chido & Adela. Serving all of Georgia up to 40 miles from Lawrenceville — no need to leave your driveway.",
-              es: "Detallado automotriz premium por Chido y Adela. Servimos toda Georgia hasta 40 millas desde Lawrenceville — sin que salgas de tu casa.",
-            })}
-          </p>
-
-          <div ref={ctaRef} className="mt-8" />
-
-          {/* Best of Gwinnett ribbons */}
-          <div className="mt-10">
-            <div className="OL mb-4">{T({ en: "Best of Gwinnett", es: "Mejor de Gwinnett" })}</div>
-            <div className="flex flex-wrap gap-1">
-              {AWARDS.map(({ year, img }) => (
-                <div key={year} className="relative w-[72px] h-[72px] flex-shrink-0">
-                  <Image
-                    src={img}
-                    alt={`Best of Gwinnett ${year}`}
-                    fill
-                    className="object-contain"
-                    style={{  }}
-                  />
-                </div>
-              ))}
-            </div>
+          <div className="D anim-line text-[clamp(2.5rem,6vw,5.5rem)] g-fire mt-2">
+            {T({ en: "WE COME TO YOU", es: "VAMOS A TI" })}
           </div>
         </div>
 
-        {/* RIGHT — Team photo */}
-        <div ref={imgRef} className="relative hidden lg:flex justify-center items-center">
-          <div className="relative w-[75%] aspect-[3/4] overflow-hidden">
-            <Image
-              src="/fotos/logo-sin-fondo.png"
-              alt="Chido & Adela — Nexus Auto Detail"
-              fill
-              className="object-contain"
-              style={{ objectPosition: "center center" }}
-              priority
-            />
+        <p className="mt-6 text-[var(--gray)] text-[1.25rem] leading-relaxed max-w-[600px]">
+          {T({
+            en: "Premium mobile auto detailing by Chido & Adela. Serving all of Georgia up to 40 miles from Lawrenceville — no need to leave your driveway.",
+            es: "Detallado automotriz premium por Chido y Adela. Servimos toda Georgia hasta 40 millas desde Lawrenceville — sin que salgas de tu casa.",
+          })}
+        </p>
+
+        <div ref={ctaRef} className="mt-4" />
+
+        {/* Best of Gwinnett ribbons */}
+        <div className="mt-12 w-full">
+          <div className="OL mb-5">{T({ en: "Best of Gwinnett", es: "Mejor de Gwinnett" })}</div>
+          <div className="flex flex-nowrap justify-center gap-3 overflow-x-auto pb-2"
+            style={{ scrollbarWidth: "none" }}>
+            {AWARDS.map(({ year, img }, i) => (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                key={year}
+                src={img}
+                alt={`Best of Gwinnett ${year}`}
+                className="ribbon-badge flex-shrink-0"
+                style={{
+                  width: "clamp(72px, 8.5vw, 120px)",
+                  height: "auto",
+                  objectFit: "contain",
+                  animationDelay: `${i * 0.12}s`,
+                }}
+              />
+            ))}
           </div>
         </div>
       </div>

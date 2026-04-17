@@ -1,28 +1,52 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useLang } from "@/lib/LangContext";
-import { Menu, X, Phone } from "lucide-react";
+import { Menu, X, Phone, ChevronLeft } from "lucide-react";
 
 const PHONE = "(678) 882-6689";
 
+type Lang = "en" | "es";
+function LangToggle({ lang, setLang }: { lang: Lang; setLang: (l: Lang) => void }) {
+  return (
+    <div className="relative flex items-center rounded-full p-[3px]"
+      style={{ background: "rgba(26,174,222,0.10)", border: "1px solid rgba(26,174,222,0.28)" }}>
+      {/* sliding pill */}
+      <span
+        className="absolute top-[3px] bottom-[3px] rounded-full transition-all duration-300 ease-in-out"
+        style={{
+          width: "calc(50% - 3px)",
+          left: lang === "en" ? "3px" : "calc(50%)",
+          background: "var(--blue)",
+          boxShadow: "0 0 12px rgba(26,174,222,.5)",
+        }}
+      />
+      {(["en", "es"] as Lang[]).map((l) => (
+        <button
+          key={l}
+          onClick={() => setLang(l)}
+          className="relative z-10 px-3 py-1 text-[.85rem] font-bold tracking-[.2em] uppercase transition-colors duration-300 w-12 text-center"
+          style={{ color: lang === l ? "#fff" : "rgba(26,174,222,0.55)" }}
+        >
+          {l.toUpperCase()}
+        </button>
+      ))}
+    </div>
+  );
+}
+
 export default function Navbar() {
   const { lang, setLang, T } = useLang();
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const navRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  const pathname = usePathname();
+  const isPW = pathname.startsWith("/pressure-washing");
 
   const links = [
-    { href: "#services", label: T({ en: "Services", es: "Servicios" }) },
-    { href: "#packages", label: T({ en: "Packages", es: "Paquetes" }) },
-    { href: "#gallery", label: T({ en: "Gallery", es: "Galería" }) },
+    { href: "#services",  label: T({ en: "Services",         es: "Servicios" }) },
+    { href: "#packages",  label: T({ en: "Packages",         es: "Paquetes" }) },
+    { href: "#gallery",   label: T({ en: "Gallery",          es: "Galería" }) },
     { href: "/pressure-washing", label: T({ en: "Pressure Washing", es: "Lavado a Presión" }) },
   ];
 
@@ -32,82 +56,101 @@ export default function Navbar() {
   return (
     <nav
       ref={navRef}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-[#030A14]/90 backdrop-blur-md border-b border-[rgba(26,174,222,0.12)]" : ""
-      }`}
+      className="fixed top-0 left-0 right-0 z-50"
+      style={{
+        background: "transparent",
+        borderBottom: "1px solid rgba(26,174,222,0.10)",
+      }}
     >
-      <div className="flex items-center justify-between px-[6vw] h-[72px]">
-        {/* Logo — image only */}
+      {/* Desktop — 3-column grid for true centering */}
+      <div className="hidden md:grid grid-cols-3 items-center px-[5vw] h-[88px]">
+
+        {/* Left: Logo */}
         <Link href="/" className="flex items-center flex-shrink-0">
-          <Image src="/logo-sin-titulo-sm.png" alt="Nexus Auto Detail" width={120} height={67}
-            className="h-10 w-auto object-contain" />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/logo-sin-titulo-final.png" alt="Nexus Auto Detail"
+            className="h-14 w-auto object-contain" style={{ mixBlendMode: "screen" }} />
         </Link>
 
-        {/* Desktop links */}
-        <div className="hidden md:flex items-center gap-8">
-          {links.map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              className="text-[.78rem] font-semibold tracking-[.15em] uppercase text-[var(--gray)] hover:text-[var(--white)] transition-colors"
-            >
-              {l.label}
+        {/* Center: Nav links or Back button */}
+        <div className="flex items-center justify-center gap-8">
+          {isPW ? (
+            <Link href="/"
+              className="flex items-center gap-2 text-[.95rem] font-semibold tracking-[.12em] uppercase transition-all duration-200 hover:text-[var(--white)] hover:gap-3"
+              style={{ color: "var(--blue)" }}>
+              <ChevronLeft size={16} />
+              {T({ en: "Auto Detail", es: "Auto Detail" })}
             </Link>
-          ))}
+          ) : (
+            links.map((l) => (
+              <Link
+                key={l.href}
+                href={l.href}
+                className="text-[.95rem] font-semibold tracking-[.12em] uppercase text-[var(--gray)] hover:text-[var(--white)] transition-colors whitespace-nowrap"
+              >
+                {l.label}
+              </Link>
+            ))
+          )}
         </div>
 
-        {/* Right */}
-        <div className="hidden md:flex items-center gap-4">
-          {/* Phone */}
-          <a href={`tel:+16788826689`}
-            className="flex items-center gap-1.5 text-[.75rem] font-semibold text-[var(--gray)] hover:text-[var(--white)] transition-colors">
-            <Phone size={13} className="text-[var(--blue)]" />
+        {/* Right: Phone + Lang + Book */}
+        <div className="flex items-center justify-end gap-5">
+          <a href="tel:+16788826689"
+            className="flex items-center gap-2 text-[1rem] font-semibold text-[var(--gray)] hover:text-[var(--white)] transition-colors whitespace-nowrap">
+            <Phone size={17} className="text-[var(--blue)]" />
             {PHONE}
           </a>
 
-          {/* Lang toggle */}
-          <button
-            onClick={() => setLang(lang === "en" ? "es" : "en")}
-            className="text-[.72rem] font-bold tracking-[.2em] uppercase border border-[rgba(26,174,222,.3)] rounded-full px-3 py-1 text-[var(--blue)] hover:bg-[rgba(26,174,222,.08)] transition-colors"
-          >
-            {lang === "en" ? "ES" : "EN"}
-          </button>
+          <LangToggle lang={lang} setLang={setLang} />
 
-          <a href={waUrl} target="_blank" rel="noreferrer" className="btn btn-blue text-sm py-3 px-6">
+          <a href={waUrl} target="_blank" rel="noreferrer" className="btn btn-blue">
             {T({ en: "Book Now", es: "Reservar" })}
           </a>
         </div>
+      </div>
 
-        {/* Mobile hamburger */}
-        <button className="md:hidden text-[var(--white)] p-2" onClick={() => setOpen(!open)}>
+      {/* Mobile header */}
+      <div className="md:hidden flex items-center justify-between px-5 h-[64px]">
+        <Link href="/" className="flex items-center">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/logo-sin-titulo-final.png" alt="Nexus Auto Detail"
+            className="h-9 w-auto object-contain" style={{ mixBlendMode: "screen" }} />
+        </Link>
+        <button className="text-[var(--white)] p-2" onClick={() => setOpen(!open)}>
           {open ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
       {/* Mobile menu */}
       {open && (
-        <div className="md:hidden bg-[#061020]/98 backdrop-blur-xl border-t border-[rgba(26,174,222,.12)] px-6 py-6 flex flex-col gap-5">
-          {links.map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              onClick={() => setOpen(false)}
-              className="text-[.9rem] font-semibold tracking-[.15em] uppercase text-[var(--white)] hover:text-[var(--blue)] transition-colors"
-            >
-              {l.label}
+        <div className="md:hidden border-t border-[rgba(26,174,222,.12)] px-6 py-6 flex flex-col gap-5"
+          style={{ background: "rgba(4,28,50,0.98)", backdropFilter: "blur(20px)" }}>
+          {isPW ? (
+            <Link href="/" onClick={() => setOpen(false)}
+              className="flex items-center gap-2 text-[.9rem] font-semibold tracking-[.15em] uppercase transition-colors"
+              style={{ color: "var(--blue)" }}>
+              <ChevronLeft size={15} />
+              {T({ en: "Back to Auto Detail", es: "Volver a Auto Detail" })}
             </Link>
-          ))}
+          ) : (
+            links.map((l) => (
+              <Link
+                key={l.href}
+                href={l.href}
+                onClick={() => setOpen(false)}
+                className="text-[.9rem] font-semibold tracking-[.15em] uppercase text-[var(--white)] hover:text-[var(--blue)] transition-colors"
+              >
+                {l.label}
+              </Link>
+            ))
+          )}
           <div className="rule" />
-          <a href={`tel:+16788826689`} className="flex items-center gap-2 text-[var(--blue)] text-sm font-semibold">
-            <Phone size={14} /> {PHONE}
+          <a href="tel:+16788826689" className="flex items-center gap-2 text-[var(--blue)] text-[.9rem] font-semibold">
+            <Phone size={15} /> {PHONE}
           </a>
           <div className="flex items-center gap-4">
-            <button
-              onClick={() => setLang(lang === "en" ? "es" : "en")}
-              className="text-[.72rem] font-bold tracking-[.2em] uppercase border border-[rgba(26,174,222,.3)] rounded-full px-3 py-1 text-[var(--blue)]"
-            >
-              {lang === "en" ? "ES" : "EN"}
-            </button>
+            <LangToggle lang={lang} setLang={setLang} />
             <a href={waUrl} target="_blank" rel="noreferrer" className="btn btn-blue text-sm py-3 px-6">
               {T({ en: "Book Now", es: "Reservar" })}
             </a>

@@ -16,9 +16,9 @@ export default function Home() {
       <Team />
       <Services />
       <WashReveal />
-      <Gallery />
       <Packages />
       <Booking />
+      <Gallery />
       <Footer />
     </main>
   );

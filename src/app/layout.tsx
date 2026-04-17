@@ -6,6 +6,7 @@ import CustomCursor from "@/components/CustomCursor";
 import SmoothScroll from "@/components/SmoothScroll";
 import Navbar from "@/components/Navbar";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
+import GlobalVideoBackground from "@/components/GlobalVideoBackground";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -41,6 +42,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${barlow.variable}`}>
       <body>
+        <GlobalVideoBackground />
+
         <LangProvider>
           <CustomCursor />
           <SmoothScroll>

@@ -14,7 +14,7 @@ export default function Marquee() {
   const repeated = [...CONTENT, ...CONTENT];
 
   return (
-    <div className="relative w-full overflow-hidden border-y border-[rgba(26,174,222,.15)] bg-[#061020] py-4">
+    <div className="relative w-full overflow-hidden border-y border-[rgba(26,174,222,.25)] bg-[rgba(6,16,32,0.82)] py-4" style={{ backdropFilter: "blur(4px)" }}>
       <div className="marq-inner">
         {repeated.map((item, i) => (
           <span
