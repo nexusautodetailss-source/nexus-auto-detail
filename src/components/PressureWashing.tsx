@@ -149,7 +149,7 @@ const SERVICES = [
 /* ── Carousel component ── */
 function ServiceCarousel({ photos, accent }: { photos: string[]; accent: string }) {
   const [idx, setIdx] = useState(0);
-  const timer = useRef<ReturnType<typeof setTimeout>>();
+  const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const next = useCallback(() => setIdx(i => (i + 1) % photos.length), [photos.length]);
   const prev = () => setIdx(i => (i - 1 + photos.length) % photos.length);
