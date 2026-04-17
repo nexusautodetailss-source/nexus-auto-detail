@@ -178,7 +178,7 @@ function WashCanvas({ dirtyUrl, cleanUrl, label, onDone }: WashProps) {
       <div className="OL mb-4 text-[var(--white)]">{label}</div>
 
       {/* Canvas area — horizontal, no frame */}
-      <div className="relative w-full" style={{ aspectRatio: "16/9", maxHeight: "65vh", minHeight: "220px" }}>
+      <div className="relative w-full" style={{ aspectRatio: "16/9", maxHeight: "65vh", minHeight: "280px" }}>
         {/* Clean image underneath */}
         <img
           src={cleanUrl}
@@ -284,17 +284,9 @@ export default function WashReveal() {
       </div>
 
       {/* Single car with nav */}
-      <div className="relative z-10 flex items-center gap-2 md:gap-5 w-full max-w-6xl mx-auto px-0">
-        {/* Prev */}
-        <button
-          onClick={prev}
-          className="flex-shrink-0 w-8 h-8 md:w-11 md:h-11 rounded-full gc flex items-center justify-center text-[var(--blue)] hover:bg-[rgba(26,174,222,.15)] transition-colors"
-        >
-          <ChevronLeft size={18} />
-        </button>
-
-        {/* Canvas */}
-        <div className="flex-1">
+      <div className="relative z-10 w-full max-w-6xl mx-auto">
+        {/* Canvas — full width, arrows overlaid */}
+        <div className="relative">
           <WashCanvas
             key={key}
             dirtyUrl={car.dirty}
@@ -302,15 +294,23 @@ export default function WashReveal() {
             label={car.label}
             onDone={next}
           />
+          {/* Prev arrow — overlaid left */}
+          <button
+            onClick={prev}
+            className="absolute left-2 top-1/2 -translate-y-1/2 z-30 w-9 h-9 md:w-11 md:h-11 rounded-full flex items-center justify-center text-[var(--blue)] transition-colors"
+            style={{ background: "rgba(3,10,20,0.7)", border: "1px solid rgba(26,174,222,0.3)" }}
+          >
+            <ChevronLeft size={20} />
+          </button>
+          {/* Next arrow — overlaid right */}
+          <button
+            onClick={next}
+            className="absolute right-2 top-1/2 -translate-y-1/2 z-30 w-9 h-9 md:w-11 md:h-11 rounded-full flex items-center justify-center text-[var(--blue)] transition-colors"
+            style={{ background: "rgba(3,10,20,0.7)", border: "1px solid rgba(26,174,222,0.3)" }}
+          >
+            <ChevronRight size={20} />
+          </button>
         </div>
-
-        {/* Next */}
-        <button
-          onClick={next}
-          className="flex-shrink-0 w-8 h-8 md:w-11 md:h-11 rounded-full gc flex items-center justify-center text-[var(--blue)] hover:bg-[rgba(26,174,222,.15)] transition-colors"
-        >
-          <ChevronRight size={18} />
-        </button>
       </div>
 
       {/* Dot navigation */}

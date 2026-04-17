@@ -126,16 +126,13 @@ function ServiceCard({ svc, index }: { svc: Service; index: number }) {
 
       {/* Default state — title at bottom */}
       <div
-        className="absolute bottom-0 left-0 right-0 px-5 pb-8 z-20 text-center transition-transform duration-400"
-        style={{ transform: active ? "translateY(-8px)" : "" }}
+        className="absolute bottom-0 left-0 right-0 px-2 pb-4 z-20 text-center transition-transform duration-400"
+        style={{ transform: active ? "translateY(-6px)" : "" }}
       >
-        <span className="OL text-[.6rem] mb-2 block" style={{ color: "rgba(26,174,222,0.7)" }}>
-          {T(svc.tag)}
-        </span>
-        <div className="D text-[clamp(1.5rem,5vw,1.9rem)] text-[var(--white)] leading-tight tracking-wide">
+        <div className="D text-[clamp(.75rem,3.5vw,1.9rem)] text-[var(--white)] leading-tight tracking-wide px-1">
           {T(svc.name).toUpperCase()}
         </div>
-        <div className="mt-2 w-8 h-[2px] mx-auto rounded-full" style={{ background: "var(--blue)" }} />
+        <div className="mt-1.5 w-6 h-[2px] mx-auto rounded-full" style={{ background: "var(--blue)" }} />
       </div>
 
       {/* Touch/Hover reveal panel */}
@@ -256,11 +253,21 @@ export default function Services() {
           </div>
         </div>
 
-        {/* Mobile: horizontal snap scroll */}
-        <div className="md:hidden w-full overflow-x-auto pb-4" style={{ scrollbarWidth: "none" }}>
-          <div className="flex gap-4 px-5" style={{ width: "max-content" }}>
+        {/* Mobile: 3-visible carousel with snap scroll */}
+        <div
+          className="md:hidden w-full overflow-x-auto pb-4"
+          style={{ scrollbarWidth: "none", scrollSnapType: "x mandatory", WebkitOverflowScrolling: "touch" }}
+        >
+          <div className="flex gap-3 px-4">
             {SERVICES.map((svc, i) => (
-              <div key={svc.id} style={{ width: "72vw", maxWidth: "300px", flexShrink: 0, scrollSnapAlign: "start" }}>
+              <div
+                key={svc.id}
+                style={{
+                  width: "calc((100vw - 40px) / 3)",
+                  flexShrink: 0,
+                  scrollSnapAlign: "start",
+                }}
+              >
                 <ServiceCard svc={svc} index={i} />
               </div>
             ))}
