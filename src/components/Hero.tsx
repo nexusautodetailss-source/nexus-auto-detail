@@ -93,8 +93,23 @@ export default function Hero() {
         {/* Best of Gwinnett ribbons */}
         <div className="mt-12 w-full">
           <div className="OL mb-5">{T({ en: "Best of Gwinnett", es: "Mejor de Gwinnett" })}</div>
-          <div className="flex flex-nowrap justify-center gap-3 overflow-x-auto pb-2"
-            style={{ scrollbarWidth: "none" }}>
+
+          {/* Mobile: 4-column grid (2 rows) */}
+          <div className="grid grid-cols-4 gap-3 md:hidden">
+            {AWARDS.map(({ year, img }, i) => (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                key={year}
+                src={img}
+                alt={`Best of Gwinnett ${year}`}
+                className="ribbon-badge w-full h-auto object-contain"
+                style={{ animationDelay: `${i * 0.12}s` }}
+              />
+            ))}
+          </div>
+
+          {/* Desktop: single row */}
+          <div className="hidden md:flex flex-nowrap justify-center gap-3">
             {AWARDS.map(({ year, img }, i) => (
               // eslint-disable-next-line @next/next/no-img-element
               <img

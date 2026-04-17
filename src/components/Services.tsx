@@ -124,21 +124,18 @@ function ServiceCard({ svc, index }: { svc: Service; index: number }) {
         style={{ zIndex: 2, opacity: active ? 0.5 : 1 }}
       />
 
-      {/* Tag badge */}
-      <div className="absolute top-4 left-4 z-20">
-        <span className="OL text-[.6rem] bg-[rgba(26,174,222,.15)] border border-[rgba(26,174,222,.35)] backdrop-blur-sm px-3 py-1 rounded-full text-[var(--blue)]">
-          {T(svc.tag)}
-        </span>
-      </div>
-
       {/* Default state — title at bottom */}
       <div
-        className="absolute bottom-0 left-0 right-0 px-6 pb-10 z-20 text-center transition-transform duration-400"
+        className="absolute bottom-0 left-0 right-0 px-5 pb-8 z-20 text-center transition-transform duration-400"
         style={{ transform: active ? "translateY(-8px)" : "" }}
       >
-        <div className="D text-[clamp(1.3rem,4vw,1.8rem)] text-[var(--white)] leading-tight">
+        <span className="OL text-[.6rem] mb-2 block" style={{ color: "rgba(26,174,222,0.7)" }}>
+          {T(svc.tag)}
+        </span>
+        <div className="D text-[clamp(1.5rem,5vw,1.9rem)] text-[var(--white)] leading-tight tracking-wide">
           {T(svc.name).toUpperCase()}
         </div>
+        <div className="mt-2 w-8 h-[2px] mx-auto rounded-full" style={{ background: "var(--blue)" }} />
       </div>
 
       {/* Touch/Hover reveal panel */}
@@ -259,10 +256,21 @@ export default function Services() {
           </div>
         </div>
 
-        {/* Grid */}
+        {/* Mobile: horizontal snap scroll */}
+        <div className="md:hidden w-full overflow-x-auto pb-4" style={{ scrollbarWidth: "none" }}>
+          <div className="flex gap-4 px-5" style={{ width: "max-content" }}>
+            {SERVICES.map((svc, i) => (
+              <div key={svc.id} style={{ width: "72vw", maxWidth: "300px", flexShrink: 0, scrollSnapAlign: "start" }}>
+                <ServiceCard svc={svc} index={i} />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Desktop: grid */}
         <div
           ref={gridRef}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 w-full max-w-[1200px]"
+          className="hidden md:grid grid-cols-2 lg:grid-cols-3 gap-5 w-full max-w-[1200px]"
         >
           {SERVICES.map((svc, i) => (
             <ServiceCard key={svc.id} svc={svc} index={i} />
