@@ -1,7 +1,7 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { useLang } from "@/lib/LangContext";
-import { MessageCircle, Star, Sparkles, Zap, Crown } from "lucide-react";
+import { MessageCircle, Star, Sparkles, Zap, Crown, ChevronLeft, ChevronRight } from "lucide-react";
 
 interface Package {
   id: string;
@@ -84,7 +84,7 @@ function PkgCard({ pkg, index }: { pkg: Package; index: number }) {
       ref={cardRef}
       className="pkg-card gc flex flex-col items-center text-center relative overflow-hidden"
       style={{
-        padding: "clamp(28px, 3vw, 48px)",
+        padding: "clamp(20px, 3vw, 48px)",
         borderColor: hovered ? `${pkg.accent}60` : `${pkg.accent}20`,
         borderTopWidth: "3px",
         borderTopColor: pkg.accent,
@@ -178,6 +178,34 @@ function PkgCard({ pkg, index }: { pkg: Package; index: number }) {
 export default function Packages() {
   const { T } = useLang();
   const cardsRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [active, setActive] = useState(0);
+
+  const scrollTo = useCallback((i: number) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const card = el.children[i] as HTMLElement;
+    if (card) card.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+    setActive(i);
+  }, []);
+
+  // track active card on scroll
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const onScroll = () => {
+      const cards = Array.from(el.children) as HTMLElement[];
+      let closest = 0;
+      let minDist = Infinity;
+      cards.forEach((c, i) => {
+        const dist = Math.abs(c.getBoundingClientRect().left - el.getBoundingClientRect().left);
+        if (dist < minDist) { minDist = dist; closest = i; }
+      });
+      setActive(closest);
+    };
+    el.addEventListener("scroll", onScroll, { passive: true });
+    return () => el.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     let ctx: { revert: () => void } | null = null;
@@ -193,8 +221,6 @@ export default function Packages() {
             scrollTrigger: { trigger: cardsRef.current, start: "top 80%" } }
         );
       });
-
-      // 3D tilt
       const cards = cardsRef.current?.querySelectorAll(".pkg-card");
       cards?.forEach((card) => {
         const el = card as HTMLElement;
@@ -214,7 +240,7 @@ export default function Packages() {
   }, []);
 
   return (
-    <section id="packages" className="relative overflow-hidden min-h-screen flex flex-col items-center justify-center px-[5vw] py-16"
+    <section id="packages" className="relative overflow-hidden flex flex-col items-center justify-center px-0 md:px-[5vw] py-12 md:py-16 min-h-screen"
       style={{ background: "rgba(6,16,32,0.88)", backdropFilter: "blur(2px)" }}>
 
       <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
@@ -222,18 +248,58 @@ export default function Packages() {
       </div>
 
       {/* Header */}
-      <div className="text-center mb-16 relative z-10">
-        <div className="OL mb-4">{T({ en: "Choose Your Clean", es: "Elige Tu Limpieza" })}</div>
-        <h2 className="D text-[clamp(3rem,7vw,6rem)] text-[var(--white)]">
+      <div className="text-center mb-8 md:mb-16 relative z-10 px-5">
+        <div className="OL mb-3 md:mb-4">{T({ en: "Choose Your Clean", es: "Elige Tu Limpieza" })}</div>
+        <h2 className="D text-[clamp(2.5rem,7vw,6rem)] text-[var(--white)]">
           {T({ en: "PACKAGES", es: "PAQUETES" })}
         </h2>
-        <p className="text-[var(--gray)] text-[1rem] mt-4 max-w-lg mx-auto leading-relaxed">
+        <p className="text-[var(--gray)] text-[.9rem] md:text-[1rem] mt-3 max-w-lg mx-auto leading-relaxed">
           {T({ en: "Mobile service included — we come to you within 40 miles.", es: "Servicio móvil incluido — vamos a ti en un radio de 40 millas." })}
         </p>
       </div>
 
-      {/* Cards */}
-      <div ref={cardsRef} className="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-[1200px]">
+      {/* Mobile: snap carousel */}
+      <div className="md:hidden w-full relative z-10">
+        <div
+          ref={scrollRef}
+          className="flex overflow-x-auto gap-4 px-5 pb-2"
+          style={{ scrollbarWidth: "none", scrollSnapType: "x mandatory", WebkitOverflowScrolling: "touch" }}
+        >
+          {PACKAGES.map((pkg, i) => (
+            <div key={pkg.id} style={{ width: "82vw", flexShrink: 0, scrollSnapAlign: "center" }}>
+              <PkgCard pkg={pkg} index={i} />
+            </div>
+          ))}
+        </div>
+
+        {/* Dots + arrows */}
+        <div className="flex items-center justify-center gap-5 mt-5">
+          <button onClick={() => scrollTo(Math.max(0, active - 1))}
+            className="w-9 h-9 rounded-full flex items-center justify-center transition-colors"
+            style={{ background: "rgba(26,174,222,0.12)", border: "1px solid rgba(26,174,222,0.25)", color: "var(--blue)" }}>
+            <ChevronLeft size={18} />
+          </button>
+          <div className="flex gap-2">
+            {PACKAGES.map((_, i) => (
+              <button key={i} onClick={() => scrollTo(i)}
+                className="rounded-full transition-all duration-300"
+                style={{
+                  width: active === i ? "24px" : "8px",
+                  height: "8px",
+                  background: active === i ? `${PACKAGES[i].accent}` : "rgba(26,174,222,0.25)",
+                }} />
+            ))}
+          </div>
+          <button onClick={() => scrollTo(Math.min(PACKAGES.length - 1, active + 1))}
+            className="w-9 h-9 rounded-full flex items-center justify-center transition-colors"
+            style={{ background: "rgba(26,174,222,0.12)", border: "1px solid rgba(26,174,222,0.25)", color: "var(--blue)" }}>
+            <ChevronRight size={18} />
+          </button>
+        </div>
+      </div>
+
+      {/* Desktop: grid */}
+      <div ref={cardsRef} className="hidden md:grid relative z-10 grid-cols-3 gap-6 w-full max-w-[1200px]">
         {PACKAGES.map((pkg, i) => (
           <PkgCard key={pkg.id} pkg={pkg} index={i} />
         ))}

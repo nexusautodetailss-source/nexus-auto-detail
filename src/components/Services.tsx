@@ -129,7 +129,7 @@ function ServiceCard({ svc, index }: { svc: Service; index: number }) {
         className="absolute bottom-0 left-0 right-0 px-2 pb-4 z-20 text-center transition-transform duration-400"
         style={{ transform: active ? "translateY(-6px)" : "" }}
       >
-        <div className="D text-[clamp(.75rem,3.5vw,1.9rem)] text-[var(--white)] leading-tight tracking-wide px-1">
+        <div className="D text-[clamp(1.2rem,4.5vw,1.9rem)] text-[var(--white)] leading-tight tracking-wide px-1">
           {T(svc.name).toUpperCase()}
         </div>
         <div className="mt-1.5 w-6 h-[2px] mx-auto rounded-full" style={{ background: "var(--blue)" }} />
@@ -253,21 +253,14 @@ export default function Services() {
           </div>
         </div>
 
-        {/* Mobile: 3-visible carousel with snap scroll */}
+        {/* Mobile: snap scroll carousel */}
         <div
           className="md:hidden w-full overflow-x-auto pb-4"
           style={{ scrollbarWidth: "none", scrollSnapType: "x mandatory", WebkitOverflowScrolling: "touch" }}
         >
-          <div className="flex gap-3 px-4">
+          <div className="flex gap-4 px-5">
             {SERVICES.map((svc, i) => (
-              <div
-                key={svc.id}
-                style={{
-                  width: "calc((100vw - 40px) / 3)",
-                  flexShrink: 0,
-                  scrollSnapAlign: "start",
-                }}
-              >
+              <div key={svc.id} style={{ width: "72vw", flexShrink: 0, scrollSnapAlign: "start" }}>
                 <ServiceCard svc={svc} index={i} />
               </div>
             ))}
