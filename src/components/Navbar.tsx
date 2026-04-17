@@ -96,12 +96,6 @@ export default function Navbar() {
 
         {/* Right: Phone + Lang + Book */}
         <div className="flex items-center justify-end gap-5">
-          <a href="tel:+16788826689"
-            className="flex items-center gap-2 text-[1rem] font-semibold text-[var(--gray)] hover:text-[var(--white)] transition-colors whitespace-nowrap">
-            <Phone size={17} className="text-[var(--blue)]" />
-            {PHONE}
-          </a>
-
           <LangToggle lang={lang} setLang={setLang} />
 
           <a href={waUrl} target="_blank" rel="noreferrer" className="btn btn-blue">
