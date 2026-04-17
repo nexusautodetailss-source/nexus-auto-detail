@@ -157,7 +157,7 @@ function ServiceCarousel({ photos, accent }: { photos: string[]; accent: string 
   useEffect(() => {
     if (photos.length <= 1) return;
     timer.current = setTimeout(next, 3200);
-    return () => clearTimeout(timer.current);
+    return () => { if (timer.current !== null) clearTimeout(timer.current); };
   }, [idx, next, photos.length]);
 
   /* Placeholder when no photos yet */
