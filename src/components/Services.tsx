@@ -28,7 +28,7 @@ const SERVICES: Service[] = [
     id: "interior",
     name: { en: "Interior Detail", es: "Detalle Interior" },
     photo: "/fotos/_74A0676.jpg",
-    video: "/videos/interior/clip-web.mp4",
+    video: "/videos/interior/clip-web1.mp4",
     tag: { en: "Deep Clean", es: "Limpieza Profunda" },
     desc: { en: "Deep clean for every inch inside — vacuum, seat conditioning, dashboard, odor elimination & door panels.", es: "Limpieza profunda de cada rincón — aspirado, asientos, tablero, olores y paneles de puerta." },
     features: [{ en: "Deep vacuum", es: "Aspirado" }, { en: "Seat conditioning", es: "Asientos" }, { en: "Odor removal", es: "Olores" }, { en: "Dashboard", es: "Tablero" }],
