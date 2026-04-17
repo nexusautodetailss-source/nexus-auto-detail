@@ -87,10 +87,10 @@ export default function Footer() {
         </div>
 
         {/* ── Main grid ── */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 mb-16 text-center sm:text-left">
 
           {/* Brand */}
-          <div className="sm:col-span-2 lg:col-span-1">
+          <div className="sm:col-span-2 lg:col-span-1 flex flex-col items-center sm:items-start">
             <Link href="/" className="flex items-center gap-3 mb-5 group">
               <div className="relative">
                 <Image src="/logo.png" alt="Nexus Auto Detail" width={56} height={56}
@@ -120,9 +120,9 @@ export default function Footer() {
           </div>
 
           {/* Services */}
-          <div>
+          <div className="flex flex-col items-center sm:items-start">
             <div className="OL mb-5">{T({ en: "Services", es: "Servicios" })}</div>
-            <ul className="flex flex-col gap-3">
+            <ul className="flex flex-col gap-3 items-center sm:items-start">
               {SERVICES.map((s) => (
                 <li key={s.en}>
                   <NavLink href={s.href}>{T(s)}</NavLink>
@@ -132,9 +132,9 @@ export default function Footer() {
           </div>
 
           {/* Contact */}
-          <div>
+          <div className="flex flex-col items-center sm:items-start">
             <div className="OL mb-5">{T({ en: "Contact", es: "Contacto" })}</div>
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-4 items-center sm:items-start">
               <a href="tel:+16788826689"
                 className="flex items-center gap-3 group transition-colors duration-200 hover:text-[var(--white)]"
                 style={{ color: "var(--gray)" }}>
@@ -173,7 +173,7 @@ export default function Footer() {
           </div>
 
           {/* Awards */}
-          <div>
+          <div className="flex flex-col items-center sm:items-start">
             <div className="OL mb-5">{T({ en: "Awards", es: "Premios" })}</div>
             <div className="flex items-center gap-1.5 mb-4">
               {[...Array(5)].map((_,i) => (
@@ -203,7 +203,7 @@ export default function Footer() {
 
         {/* ── Bottom bar ── */}
         <div className="rule mb-6" />
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-[.7rem]" style={{ color: "var(--gray)" }}>
+        <div className="flex flex-col items-center sm:flex-row sm:justify-between gap-3 text-[.7rem] text-center sm:text-left" style={{ color: "var(--gray)" }}>
           <div>© {year} Nexus Auto Detail · Chido &amp; Adela.&nbsp;
             {T({ en: "All rights reserved.", es: "Todos los derechos reservados." })}
           </div>

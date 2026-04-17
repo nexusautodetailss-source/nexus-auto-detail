@@ -111,15 +111,22 @@ export default function Navbar() {
       </div>
 
       {/* Mobile header */}
-      <div className="md:hidden flex items-center justify-between px-5 h-[64px]">
-        <Link href="/" className="flex items-center">
+      <div className="md:hidden flex items-center justify-between px-4 h-[64px] gap-2">
+        <Link href="/" className="flex items-center flex-shrink-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/logo-sin-titulo-final.png" alt="Nexus Auto Detail"
             className="h-9 w-auto object-contain" style={{ mixBlendMode: "screen" }} />
         </Link>
-        <button className="text-[var(--white)] p-2" onClick={() => setOpen(!open)}>
-          {open ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        <div className="flex items-center gap-2 flex-shrink-0">
+          <LangToggle lang={lang} setLang={setLang} />
+          <a href={waUrl} target="_blank" rel="noreferrer"
+            className="btn btn-blue text-[.72rem] py-2 px-3 whitespace-nowrap">
+            {T({ en: "Book Now", es: "Reservar" })}
+          </a>
+          <button className="text-[var(--white)] p-1.5" onClick={() => setOpen(!open)}>
+            {open ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile menu */}
