@@ -29,9 +29,9 @@ export default function WhatsAppFloat() {
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
 
-      {/* Popup card */}
+      {/* Popup card — hidden on mobile */}
       {showPopup && !dismissed && (
-        <div className="gc p-5 max-w-[270px] shadow-2xl" style={{ animation: "fadeInUp .4s ease" }}>
+        <div className="hidden md:block gc p-5 max-w-[270px] shadow-2xl" style={{ animation: "fadeInUp .4s ease" }}>
           <div className="flex items-start justify-between gap-2 mb-2">
             <div className="text-[.78rem] font-bold text-[var(--white)]">
               {T({ en: "Book your detail!", es: "¡Reserva tu detalle!" })}

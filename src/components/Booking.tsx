@@ -94,7 +94,7 @@ export default function Booking() {
     <section
       ref={sectionRef}
       id="booking"
-      className="relative overflow-hidden min-h-screen flex flex-col items-center justify-center px-[5vw] py-28"
+      className="relative overflow-hidden min-h-screen flex flex-col items-center justify-center px-4 md:px-[5vw] py-16 md:py-28"
       style={{ background: "rgba(3,10,20,0.88)", backdropFilter: "blur(2px)" }}
     >
       {/* Glow */}
@@ -103,34 +103,34 @@ export default function Booking() {
       </div>
 
       {/* ── Header ── */}
-      <div className="text-center mb-16 relative z-10">
-        <div className="OL mb-5">{T({ en: "Ready to Book?", es: "¿Listo para Reservar?" })}</div>
-        <h2 className="D text-[clamp(3.5rem,8vw,7rem)] text-[var(--white)]">
+      <div className="text-center mb-8 md:mb-16 relative z-10">
+        <div className="OL mb-3 md:mb-5">{T({ en: "Ready to Book?", es: "¿Listo para Reservar?" })}</div>
+        <h2 className="D text-[clamp(2.5rem,8vw,7rem)] text-[var(--white)]">
           {T({ en: "BOOK YOUR DETAIL", es: "RESERVA TU DETALLE" })}
         </h2>
-        <p className="text-[var(--gray)] text-[1.05rem] mt-6 max-w-lg mx-auto leading-relaxed">
+        <p className="text-[var(--gray)] text-[.95rem] mt-4 max-w-lg mx-auto leading-relaxed px-2">
           {T({ en: "Takes 30 seconds — we'll confirm via WhatsApp.", es: "Solo 30 segundos — confirmamos por WhatsApp." })}
         </p>
       </div>
 
       {/* ── Step progress ── */}
-      <div className="flex items-center gap-6 mb-14 relative z-10">
+      <div className="flex items-center gap-3 md:gap-6 mb-8 md:mb-14 relative z-10">
         {STEPS.map((s, i) => (
-          <div key={i} className="flex items-center gap-6">
-            <div className="flex flex-col items-center gap-2">
+          <div key={i} className="flex items-center gap-3 md:gap-6">
+            <div className="flex flex-col items-center gap-1.5 md:gap-2">
               <div
-                className="w-12 h-12 rounded-full flex items-center justify-center text-[1rem] font-bold transition-all duration-400"
+                className="w-9 h-9 md:w-12 md:h-12 rounded-full flex items-center justify-center text-[.88rem] md:text-[1rem] font-bold transition-all duration-400"
                 style={{
                   background: i <= step ? "var(--blue)" : "rgba(26,174,222,0.12)",
                   color: i <= step ? "#fff" : "rgba(26,174,222,0.45)",
-                  boxShadow: i === step ? "0 0 28px rgba(26,174,222,0.55)" : "none",
-                  transform: i === step ? "scale(1.18)" : "scale(1)",
+                  boxShadow: i === step ? "0 0 22px rgba(26,174,222,0.55)" : "none",
+                  transform: i === step ? "scale(1.15)" : "scale(1)",
                 }}
               >
-                {i < step ? <Check size={17} /> : i + 1}
+                {i < step ? <Check size={15} /> : i + 1}
               </div>
               <span
-                className="text-[.68rem] tracking-[.18em] uppercase font-semibold"
+                className="text-[.58rem] md:text-[.68rem] tracking-[.12em] uppercase font-semibold"
                 style={{ color: i === step ? "var(--blue)" : "rgba(136,153,170,0.5)" }}
               >
                 {T(s)}
@@ -138,7 +138,7 @@ export default function Booking() {
             </div>
             {i < STEPS.length - 1 && (
               <div
-                className="w-24 h-[1px] mb-7 transition-all duration-500"
+                className="w-10 md:w-24 h-[1px] mb-6 transition-all duration-500"
                 style={{ background: i < step ? "var(--blue)" : "rgba(26,174,222,0.18)" }}
               />
             )}
@@ -151,7 +151,7 @@ export default function Booking() {
         <div
           className="gc"
           style={{
-            padding: "clamp(36px, 5vw, 64px)",
+            padding: "clamp(20px, 5vw, 64px)",
             opacity: anim ? 0 : 1,
             transform: anim ? `translateX(${dir * 40}px)` : "translateX(0)",
             transition: "opacity .26s ease, transform .26s ease",
@@ -168,12 +168,12 @@ export default function Booking() {
                 {T({ en: "Select one to continue", es: "Selecciona uno para continuar" })}
               </p>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-3">
                 {SERVICES_LIST.map((s) => (
                   <button
                     key={s.en}
                     onClick={() => setForm({ ...form, service: s.en })}
-                    className="px-6 py-5 rounded-2xl text-[.92rem] font-semibold text-center transition-all duration-200"
+                    className="px-3 py-3.5 md:px-6 md:py-5 rounded-2xl text-[.82rem] md:text-[.92rem] font-semibold text-center transition-all duration-200"
                     style={{
                       background: form.service === s.en ? "var(--blue)" : "rgba(26,174,222,0.07)",
                       border: `1px solid ${form.service === s.en ? "var(--blue)" : "rgba(26,174,222,0.18)"}`,
@@ -437,13 +437,13 @@ export default function Booking() {
                     <label className="OL text-[.62rem] text-[var(--blue)] block mb-3">
                       {T({ en: "Preferred Time", es: "Hora Preferida" })}
                     </label>
-                    <div className="grid grid-cols-5 gap-2">
+                    <div className="grid grid-cols-5 gap-1.5">
                       {TIME_SLOTS.map((slot) => (
                         <button
                           key={slot}
                           type="button"
                           onClick={() => setForm({ ...form, time: slot })}
-                          className="py-2.5 rounded-xl text-[.78rem] font-semibold text-center transition-all duration-150"
+                          className="py-2 rounded-xl text-[.68rem] md:text-[.78rem] font-semibold text-center transition-all duration-150"
                           style={{
                             background: form.time === slot ? "var(--blue)" : "rgba(26,174,222,0.07)",
                             border: `1px solid ${form.time === slot ? "var(--blue)" : "rgba(26,174,222,0.18)"}`,
@@ -524,16 +524,16 @@ export default function Booking() {
       </div>
 
       {/* ── Contact info cards ── */}
-      <div className="relative z-10 grid grid-cols-1 sm:grid-cols-3 gap-5 w-full max-w-2xl mt-16">
+      <div className="relative z-10 grid grid-cols-3 gap-3 w-full max-w-2xl mt-10 md:mt-16">
         {INFO.map(({ icon: Icon, label, value, href }) => {
           const inner = (
-            <div className="gc p-7 flex flex-col items-center text-center gap-4 hover:border-[rgba(26,174,222,.35)] transition-colors">
-              <div className="w-12 h-12 rounded-full bg-[rgba(26,174,222,.12)] flex items-center justify-center">
-                <Icon size={20} className="text-[var(--blue)]" />
+            <div className="gc p-4 md:p-7 flex flex-col items-center text-center gap-2 md:gap-4 hover:border-[rgba(26,174,222,.35)] transition-colors">
+              <div className="w-9 h-9 md:w-12 md:h-12 rounded-full bg-[rgba(26,174,222,.12)] flex items-center justify-center">
+                <Icon size={16} className="text-[var(--blue)]" />
               </div>
               <div>
-                <div className="OL text-[.58rem] mb-1.5">{T(label)}</div>
-                <div className="text-[var(--white)] text-[.88rem] font-semibold leading-snug">{value}</div>
+                <div className="OL text-[.52rem] md:text-[.58rem] mb-1">{T(label)}</div>
+                <div className="text-[var(--white)] text-[.72rem] md:text-[.88rem] font-semibold leading-snug">{value}</div>
               </div>
             </div>
           );
