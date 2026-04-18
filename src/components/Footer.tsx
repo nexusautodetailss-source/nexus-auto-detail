@@ -87,10 +87,10 @@ export default function Footer() {
         </div>
 
         {/* ── Main grid ── */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 mb-16 text-center sm:text-left">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-10 mb-16 text-center sm:text-left">
 
           {/* Brand */}
-          <div className="sm:col-span-2 lg:col-span-1 flex flex-col items-center sm:items-start">
+          <div className="col-span-2 lg:col-span-1 flex flex-col items-center sm:items-start">
             <Link href="/" className="flex items-center gap-3 mb-5 group">
               <div className="relative">
                 <Image src="/logo.png" alt="Nexus Auto Detail" width={56} height={56}
@@ -173,7 +173,7 @@ export default function Footer() {
           </div>
 
           {/* Awards */}
-          <div className="flex flex-col items-center sm:items-start">
+          <div className="col-span-2 lg:col-span-1 flex flex-col items-center sm:items-start">
             <div className="OL mb-5">{T({ en: "Awards", es: "Premios" })}</div>
             <div className="flex items-center gap-1.5 mb-4">
               {[...Array(5)].map((_,i) => (
