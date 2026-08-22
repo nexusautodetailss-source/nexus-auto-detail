@@ -10,6 +10,9 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
   }, [pathname]);
 
   useEffect(() => {
+    const isTouch = window.matchMedia("(pointer: coarse)").matches || "ontouchstart" in window;
+    if (isTouch) return;
+
     let lenis: import("lenis").default | null = null;
     let raf: number;
 

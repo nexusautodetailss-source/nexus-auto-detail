@@ -7,6 +7,9 @@ export default function CustomCursor() {
     const ring = document.getElementById("cur-ring");
     if (!dot || !ring) return;
 
+    const isTouch = window.matchMedia("(pointer: coarse)").matches || "ontouchstart" in window;
+    if (isTouch) return;
+
     let mx = -100, my = -100;
     let rx = -100, ry = -100;
     let raf: number;
