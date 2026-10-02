@@ -68,7 +68,7 @@ export default function AppPopup() {
           {/* tarjeta de 10 sellos */}
           <div className="grid grid-cols-5" style={{ margin: "22px auto 0", maxWidth: 290, gap: 10 }}>
             {Array.from({ length: 10 }, (_, i) => {
-              const n = i + 1, on = n <= 4, reward = n === 5 || n === 10;
+              const n = i + 1, on = n <= 4, reward = n === 10;
               return (
                 <div key={n} className="flex aspect-square items-center justify-center rounded-full text-[.85rem] font-bold"
                      style={{
@@ -77,7 +77,7 @@ export default function AppPopup() {
                        border: on ? "none" : `1.5px dashed ${reward ? "rgba(255,201,64,.7)" : "rgba(26,174,222,.3)"}`,
                        color: on ? "#031020" : reward ? "#FFC940" : "#4d6075",
                      }}>
-                  {reward ? (n === 5 ? "½" : "🎁") : on ? "✓" : n}
+                  {reward ? "🎁" : on ? "✓" : n}
                 </div>
               );
             })}
@@ -85,10 +85,7 @@ export default function AppPopup() {
 
           <div className="flex flex-col text-[.92rem]" style={{ marginTop: 18, gap: 6 }}>
             <div style={{ color: "#FFC940" }}>
-              <b>5</b> · {T({ en: "50% off a wash", es: "50% de un lavado" })}
-            </div>
-            <div style={{ color: "#FFC940" }}>
-              <b>10</b> · {T({ en: "A free wash", es: "Un lavado gratis" })}
+              <b>10</b> · {T({ en: "Your 10th wash is free", es: "Tu 10º lavado es gratis" })}
             </div>
           </div>
 

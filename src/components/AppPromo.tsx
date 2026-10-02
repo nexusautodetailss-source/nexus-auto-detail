@@ -9,7 +9,7 @@ const PERKS = [
   {
     icon: Gift,
     title: { en: "Loyalty card for every car", es: "Tarjeta de puntos para cada carro" },
-    text: { en: "Your 5th service gets 50% off a wash. Your 10th wash is free.", es: "En tu 5º servicio, 50% de un lavado. Tu 10º lavado es gratis." },
+    text: { en: "Every service earns a stamp. Your 10th wash is free.", es: "Cada servicio suma un sello. Tu 10º lavado es gratis." },
   },
   {
     icon: Sparkles,
