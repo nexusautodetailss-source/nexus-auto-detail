@@ -6,11 +6,11 @@ import { useLang } from "@/lib/LangContext";
 import { Phone, MapPin, Clock, MessageCircle, ChevronRight, Star, ExternalLink } from "lucide-react";
 
 const SERVICES = [
-  { en: "Exterior Detail",       es: "Detalle Exterior",         href: "#services" },
-  { en: "Interior Detail",       es: "Detalle Interior",         href: "#services" },
-  { en: "Full Detail",           es: "Detalle Completo",         href: "#services" },
-  { en: "Wash & Wax",            es: "Lavado y Encerado",        href: "#services" },
-  { en: "Headlight Restoration", es: "Restauración de Faros",    href: "#services" },
+  { en: "Essential Wash",        es: "Lavado Esencial",          href: "#services" },
+  { en: "Mini Detail",           es: "Mini Detail",              href: "#services" },
+  { en: "Full Detail",           es: "Full Detail",              href: "#services" },
+  { en: "Interior Detail",       es: "Interior Detail",          href: "#services" },
+  { en: "Oil Change · Nexus Plus", es: "Cambio de Aceite · Nexus Plus", href: "#services" },
   { en: "Ceramic Coating",       es: "Recubrimiento Cerámico",   href: "#services" },
   { en: "Pressure Washing",      es: "Lavado a Presión",         href: "/pressure-washing" },
 ];

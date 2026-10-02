@@ -50,7 +50,7 @@ export default function Hero() {
       </div>
 
       {/* Content — centered */}
-      <div className="relative z-10 w-full px-[6vw] pt-28 pb-16 flex flex-col items-center text-center max-w-5xl mx-auto">
+      <div className="relative z-10 w-full px-[5vw] pt-24 pb-20 md:pt-28 flex flex-col items-center text-center max-w-5xl mx-auto">
 
         {/* Logo */}
         <div ref={olRef} className="mb-6">
@@ -81,28 +81,31 @@ export default function Hero() {
           </div>
         </div>
 
-        <p className="mt-6 text-[var(--gray)] text-[1.25rem] leading-relaxed max-w-[600px]">
+        <p className="mt-6 text-[var(--gray)] text-[1.05rem] md:text-[1.25rem] leading-relaxed max-w-[520px]">
           {T({
-            en: "Premium mobile auto detailing by Chido & Adela. Serving all of Georgia up to 40 miles from Lawrenceville — no need to leave your driveway.",
-            es: "Detallado automotriz premium por Chido y Adela. Servimos toda Georgia hasta 40 millas desde Lawrenceville — sin que salgas de tu casa.",
+            en: "Premium mobile detailing up to 40 miles from Lawrenceville. We come to your driveway.",
+            es: "Detallado premium a domicilio, hasta 40 millas desde Lawrenceville. Vamos hasta tu casa.",
           })}
         </p>
 
-        <div ref={ctaRef} className="mt-4" />
+        <div ref={ctaRef} className="mt-8 flex flex-wrap justify-center gap-3">
+          <a href="#services" className="btn btn-blue">{T({ en: "See our services", es: "Ver servicios" })}</a>
+          <a href="#booking" className="btn btn-ghost">{T({ en: "Book now", es: "Reservar" })}</a>
+        </div>
 
         {/* Best of Gwinnett ribbons */}
         <div className="mt-12 w-full">
           <div className="OL mb-5">{T({ en: "Best of Gwinnett", es: "Mejor de Gwinnett" })}</div>
 
-          {/* Mobile: 4-column grid (2 rows) */}
-          <div className="grid grid-cols-4 gap-3 md:hidden">
+          {/* Celular: una sola fila que se desliza */}
+          <div className="flex gap-3 overflow-x-auto pb-2 md:hidden" style={{ scrollbarWidth: "none" }}>
             {AWARDS.map(({ year, img }, i) => (
               // eslint-disable-next-line @next/next/no-img-element
               <img
                 key={year}
                 src={img}
                 alt={`Best of Gwinnett ${year}`}
-                className="ribbon-badge w-full h-auto object-contain"
+                className="ribbon-badge h-auto w-[68px] flex-shrink-0 object-contain"
                 style={{ animationDelay: `${i * 0.12}s` }}
               />
             ))}

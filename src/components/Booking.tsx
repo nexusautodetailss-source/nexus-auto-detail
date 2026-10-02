@@ -3,18 +3,6 @@ import { useEffect, useRef, useState } from "react";
 import { useLang } from "@/lib/LangContext";
 import { Phone, MapPin, Clock, MessageCircle, ChevronRight, ChevronLeft, Check } from "lucide-react";
 
-const SERVICES_LIST = [
-  { en: "Exterior Detail",       es: "Detalle Exterior" },
-  { en: "Interior Detail",       es: "Detalle Interior" },
-  { en: "Full Detail",           es: "Detalle Completo" },
-  { en: "Wash & Wax",            es: "Lavado y Encerado" },
-  { en: "Headlight Restoration", es: "Restauración de Faros" },
-  { en: "Ceramic Coating",       es: "Recubrimiento Cerámico" },
-  { en: "Basic Package",         es: "Paquete Básico" },
-  { en: "Standard Package",      es: "Paquete Estándar" },
-  { en: "Full Detail Package",   es: "Paquete Detalle Completo" },
-  { en: "Pressure Washing",      es: "Lavado a Presión" },
-];
 
 const INFO = [
   { icon: Phone,  label: { en: "Call Us",       es: "Llámanos" },        value: "(678) 882-6689",             href: "tel:+16788826689" },
@@ -28,7 +16,10 @@ const STEPS = [
   { en: "Confirm",  es: "Confirmar" },
 ];
 
-export default function Booking() {
+const PRESSURE = { en: "Pressure Washing", es: "Lavado a Presión" };
+
+export default function Booking({ services }: { services: { en: string; es: string }[] }) {
+  const SERVICES_LIST = [...services, PRESSURE];
   const { T } = useLang();
   const [step, setStep] = useState(0);
   const [dir, setDir]   = useState<1 | -1>(1);

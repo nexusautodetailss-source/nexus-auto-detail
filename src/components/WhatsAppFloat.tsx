@@ -27,7 +27,7 @@ export default function WhatsAppFloat() {
   }, [dismissed]);
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
+    <div className="fixed bottom-5 right-4 md:bottom-6 md:right-6 z-50 flex flex-col items-end gap-3">
 
       {/* Popup card — hidden on mobile */}
       {showPopup && !dismissed && (
@@ -63,7 +63,7 @@ export default function WhatsAppFloat() {
       {/* SMS button */}
       <a
         href={SMS_URL}
-        className="w-13 h-13 rounded-full flex items-center justify-center shadow-xl transition-all hover:scale-110 relative"
+        className="hidden md:flex rounded-full items-center justify-center shadow-xl transition-all hover:scale-110 relative"
         style={{
           width: "52px", height: "52px",
           background: "var(--blue)",

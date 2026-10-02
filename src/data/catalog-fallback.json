@@ -1,0 +1,511 @@
+{
+  "_nota": "Fuente única de servicios y precios de Nexus. La web, la app, el agente de voz y los volantes leen este archivo. 'provisional': true = precio/texto pendiente de confirmar por la dueña.",
+  "currency": "USD",
+  "vehicle_sizes": {
+    "sedan": {
+      "en": "Sedan / Coupe",
+      "es": "Sedán / Coupé"
+    },
+    "suv": {
+      "en": "SUV / Crossover",
+      "es": "SUV / Crossover"
+    },
+    "truck": {
+      "en": "Truck / Van",
+      "es": "Camioneta / Van"
+    }
+  },
+  "loyalty": {
+    "per": "vehicle",
+    "cycle_length": 10,
+    "rewards": {
+      "10": {
+        "type": "free_reference",
+        "reference_service": "essential_wash"
+      }
+    },
+    "counts_all_services": true
+  },
+  "wash_cycle": {
+    "ideal_days": 15,
+    "stages": [
+      {
+        "from_day": 0,
+        "stage": "clean"
+      },
+      {
+        "from_day": 8,
+        "stage": "dusty"
+      },
+      {
+        "from_day": 12,
+        "stage": "dirty",
+        "notify": "soft"
+      },
+      {
+        "from_day": 15,
+        "stage": "very_dirty",
+        "notify": "book_now"
+      }
+    ],
+    "repeat_reminder_every_days": 3,
+    "resets_on": [
+      "essential_wash",
+      "mini_detail",
+      "full_detail",
+      "nexus_plus"
+    ]
+  },
+  "services": [
+    {
+      "id": "essential_wash",
+      "icon": "🚗",
+      "category": "wash",
+      "provisional": false,
+      "name": {
+        "en": "Essential Wash",
+        "es": "Lavado Esencial"
+      },
+      "tagline": {
+        "en": "Your car clean and shining without leaving home.",
+        "es": "Tu carro limpio y reluciente sin salir de casa."
+      },
+      "description": {
+        "en": "We wash your vehicle completely by hand with gentle products that protect the paint. We clean rims and tires, dry with microfiber towels to avoid marks, and leave the tires with a glossy finish. Inside, we vacuum carpets and seats, wipe down the dashboard, and leave the windows spotless inside and out.",
+        "es": "Lavamos tu vehículo completamente a mano, con productos suaves que cuidan la pintura. Limpiamos rines y llantas, secamos con toallas de microfibra para evitar marcas y dejamos las llantas con un acabado brillante. Por dentro, aspiramos alfombras y asientos, limpiamos el tablero y dejamos los vidrios impecables por dentro y por fuera."
+      },
+      "ideal_for": {
+        "en": "Regular maintenance every 1–2 weeks.",
+        "es": "Mantenimiento regular cada 1–2 semanas."
+      },
+      "duration_min": {
+        "sedan": 45,
+        "suv": 55,
+        "truck": 60
+      },
+      "price": {
+        "sedan": 60,
+        "suv": 70,
+        "truck": 80
+      },
+      "media": {
+        "video": "/services/essential_wash.mp4",
+        "poster": "/services/essential_wash.webp",
+        "photos": [
+          "/services/wash-foam.webp",
+          "/services/spray.webp"
+        ]
+      }
+    },
+    {
+      "id": "mini_detail",
+      "icon": "✨",
+      "category": "detail",
+      "provisional": false,
+      "name": {
+        "en": "Mini Detail",
+        "es": "Mini Detail"
+      },
+      "tagline": {
+        "en": "A deeper clean than a regular wash, with a before-and-after you can see.",
+        "es": "Una limpieza más profunda que un lavado normal, con un antes y después que se nota."
+      },
+      "description": {
+        "en": "Everything in the Essential Wash, plus extra detail inside and out so the difference is obvious. We vacuum every corner, including the trunk and between the seats; clean and UV-protect the dashboard, doors and console; and clean the door jambs, floor mats and vents. Outside, we apply a protective coat that adds shine and helps the car stay clean longer. It does not include shampooing seats or carpets (that's the Interior Detail or Full Detail).",
+        "es": "Todo lo del Lavado Esencial, más un detallado extra por dentro y por fuera para que el antes y después se note. Aspiramos a fondo cada rincón, incluyendo el maletero y entre los asientos; limpiamos y protegemos del sol el tablero, las puertas y la consola; y limpiamos los marcos de las puertas, los tapetes y las ventilas. Por fuera aplicamos una capa protectora que da brillo y ayuda a que el carro se mantenga limpio por más tiempo. No incluye lavado con shampoo de asientos ni alfombras (eso es el Interior Detail o el Full Detail)."
+      },
+      "ideal_for": {
+        "en": "Your first visit with us, or when the car needs more than a regular wash.",
+        "es": "Tu primera visita con nosotros, o cuando el carro necesita más que un lavado normal."
+      },
+      "duration_min": {
+        "sedan": 90,
+        "suv": 110,
+        "truck": 120
+      },
+      "price": {
+        "sedan": 140,
+        "suv": 160,
+        "truck": 180
+      },
+      "media": {
+        "video": "/services/mini_detail.mp4",
+        "poster": "/services/mini_detail.webp",
+        "photos": [
+          "/services/trunk.webp",
+          "/services/foam-suv.webp"
+        ]
+      }
+    },
+    {
+      "id": "full_detail",
+      "icon": "💎",
+      "category": "detail",
+      "provisional": false,
+      "name": {
+        "en": "Full Detail",
+        "es": "Full Detail"
+      },
+      "tagline": {
+        "en": "Your car like it just left the dealership.",
+        "es": "Tu carro como recién salido de la agencia."
+      },
+      "description": {
+        "en": "Our most complete service. On top of everything in the Mini Detail, we remove the bonded contamination a regular wash can't, leaving the paint smooth to the touch. We apply long-lasting protection (3 to 6 months). Inside, we deep-clean carpets and cloth seats, or clean and condition leather. We remove stains and odors and detail every button, seam and crevice. We also restore exterior plastics so they look new again.",
+        "es": "Nuestro servicio más completo. Además de todo lo del Mini Detail, eliminamos la suciedad que queda pegada a la pintura y que un lavado normal no quita, dejando la superficie suave al tacto. Aplicamos una protección de larga duración (3 a 6 meses). En el interior, lavamos a profundidad alfombras y asientos de tela, o limpiamos e hidratamos el cuero. Quitamos manchas y malos olores, y limpiamos con detalle cada botón, costura y rendija. También restauramos los plásticos exteriores para que luzcan como nuevos."
+      },
+      "ideal_for": {
+        "en": "2–3 times a year, before a trip, after winter, or before selling your car.",
+        "es": "2–3 veces al año, antes de un viaje, después del invierno o antes de vender tu carro."
+      },
+      "duration_min": {
+        "sedan": 180,
+        "suv": 240,
+        "truck": 300
+      },
+      "price": {
+        "sedan": 240,
+        "suv": 280,
+        "truck": 320
+      },
+      "media": {
+        "video": "/services/full_detail.mp4",
+        "poster": "/services/full_detail.webp",
+        "photos": [
+          "/services/finished-suv.webp",
+          "/services/wash-foam.webp"
+        ]
+      }
+    },
+    {
+      "id": "interior_detail",
+      "icon": "🧼",
+      "category": "detail",
+      "provisional": false,
+      "name": {
+        "en": "Interior Detail",
+        "es": "Interior Detail"
+      },
+      "tagline": {
+        "en": "The inside of your car, fresh and like new.",
+        "es": "El interior de tu carro, fresco y como nuevo."
+      },
+      "description": {
+        "en": "A deep clean focused only on the inside. We vacuum every corner, shampoo carpets and cloth seats or clean and condition leather, remove stains and odors, and detail the dashboard, console, vents, doors and door jambs. We finish with UV protection on plastics and streak-free glass.",
+        "es": "Limpieza profunda enfocada solo en el interior. Aspiramos cada rincón, lavamos alfombras y asientos de tela o limpiamos e hidratamos el cuero, quitamos manchas y malos olores, y limpiamos con detalle tablero, consola, ventilas, puertas y marcos. Terminamos con protección UV en los plásticos y vidrios sin marcas."
+      },
+      "ideal_for": {
+        "en": "Kids, pets, spills, or an interior that needs a reset.",
+        "es": "Niños, mascotas, derrames o un interior que necesita volver a empezar."
+      },
+      "duration_min": {
+        "sedan": 120,
+        "suv": 150,
+        "truck": 180
+      },
+      "price": {
+        "sedan": 160,
+        "suv": 200,
+        "truck": 220
+      },
+      "media": {
+        "video": "/services/interior_detail.mp4",
+        "poster": "/services/interior_detail.webp",
+        "photos": [
+          "/services/trunk.webp"
+        ]
+      }
+    },
+    {
+      "id": "headlight_restoration",
+      "icon": "🔦",
+      "category": "restoration",
+      "provisional": false,
+      "name": {
+        "en": "Headlight Restoration",
+        "es": "Restauración de Faros"
+      },
+      "tagline": {
+        "en": "See and be seen again.",
+        "es": "Vuelve a ver y a ser visto."
+      },
+      "description": {
+        "en": "Yellow, cloudy headlights reduce your visibility at night and make the car look older. We remove the oxidation through several sanding and polishing stages and seal them with UV protection so the clarity lasts.",
+        "es": "Los faros amarillos y opacos reducen tu visibilidad de noche y hacen ver el carro más viejo. Eliminamos la oxidación con varias etapas de lijado y pulido, y los sellamos con protección UV para que la claridad dure."
+      },
+      "ideal_for": {
+        "en": "Yellowed or foggy headlights.",
+        "es": "Faros amarillentos u opacos."
+      },
+      "duration_min": {
+        "sedan": 60,
+        "suv": 60,
+        "truck": 60
+      },
+      "price": {
+        "sedan": 70,
+        "suv": 70,
+        "truck": 70
+      },
+      "media": {
+        "video": "/services/headlight_restoration.mp4",
+        "poster": "/services/headlight_restoration.webp",
+        "photos": []
+      }
+    },
+    {
+      "id": "paint_correction",
+      "icon": "🔆",
+      "category": "restoration",
+      "provisional": false,
+      "quote_required": true,
+      "name": {
+        "en": "Paint Correction",
+        "es": "Corrección de Pintura"
+      },
+      "tagline": {
+        "en": "Bring back your car's original shine.",
+        "es": "Recupera el brillo original de tu carro."
+      },
+      "description": {
+        "en": "Over time, automatic car washes, the sun and daily use leave small scratches, swirls, water spots and a dull look on the paint. With paint correction we carefully polish the surface with professional equipment to remove those imperfections and bring back depth, gloss and color. At the end we apply a protective layer so the result lasts.",
+        "es": "Con el tiempo, los lavados automáticos, el sol y el uso diario dejan en la pintura pequeños rayones, remolinos, manchas de agua y un aspecto opaco. Con la corrección de pintura, pulimos cuidadosamente la superficie con equipo profesional para eliminar esas imperfecciones y devolverle profundidad, brillo y color. Al final, aplicamos una capa protectora para que el resultado dure."
+      },
+      "levels": [
+        {
+          "id": "gloss_enhancement",
+          "name": {
+            "en": "Gloss Enhancement",
+            "es": "Realce de brillo"
+          },
+          "description": {
+            "en": "Noticeably improves gloss and reduces light defects.",
+            "es": "Mejora notablemente el brillo y reduce los defectos leves."
+          },
+          "duration_min": {
+            "sedan": 300,
+            "suv": 360,
+            "truck": 420
+          },
+          "price_from": {
+            "sedan": 400,
+            "suv": 450,
+            "truck": 500
+          }
+        },
+        {
+          "id": "full_correction",
+          "name": {
+            "en": "Full Correction",
+            "es": "Corrección completa"
+          },
+          "description": {
+            "en": "Removes the vast majority of surface scratches and swirls for a mirror-like finish.",
+            "es": "Elimina la gran mayoría de rayones superficiales y remolinos para un acabado tipo espejo."
+          },
+          "duration_min": {
+            "sedan": 480,
+            "suv": 540,
+            "truck": 600
+          },
+          "price_from": {
+            "sedan": 650,
+            "suv": 750,
+            "truck": 850
+          }
+        }
+      ],
+      "ideal_for": {
+        "en": "Dull or scratched paint, before selling, after buying a used car, or before a ceramic coating.",
+        "es": "Carros con pintura opaca o rayada, antes de vender, después de comprar un carro usado o antes de aplicar un recubrimiento cerámico."
+      },
+      "disclaimer": {
+        "en": "Every vehicle is different, so we quote this service after an inspection or from photos of your car. Deep scratches can improve a lot, but they don't always disappear completely.",
+        "es": "Cada vehículo es diferente, por eso cotizamos este servicio después de una inspección o con fotos de tu carro. Rayones profundos pueden mejorar mucho, pero no siempre desaparecen por completo."
+      },
+      "media": {
+        "video": "/services/paint_correction.mp4",
+        "poster": "/services/paint_correction.webp",
+        "photos": [
+          "/services/finished-suv.webp"
+        ]
+      }
+    },
+    {
+      "id": "ceramic_coating",
+      "icon": "🛡️",
+      "category": "protection",
+      "provisional": false,
+      "name": {
+        "en": "Ceramic Coating",
+        "es": "Recubrimiento Cerámico"
+      },
+      "tagline": {
+        "en": "Protection that lasts for years.",
+        "es": "Protección que dura años."
+      },
+      "description": {
+        "en": "A hard ceramic layer that bonds to the paint. Water and dirt slide off, washing becomes much easier, and the paint is protected from the sun, bird droppings and minor chemical stains. Includes paint preparation before application.",
+        "es": "Una capa cerámica dura que se adhiere a la pintura. El agua y la suciedad resbalan, lavar el carro se vuelve mucho más fácil y la pintura queda protegida del sol, los excrementos de pájaro y manchas químicas leves. Incluye preparación de la pintura antes de aplicarlo."
+      },
+      "ideal_for": {
+        "en": "New cars or freshly corrected paint you want to keep perfect for 2–5 years.",
+        "es": "Carros nuevos o con pintura recién corregida que quieres mantener perfecta por 2–5 años."
+      },
+      "disclaimer": {
+        "en": "Ceramic coating is a very detailed process. The price is given only after we visit and carefully inspect your car's paint. The inspection visit is free.",
+        "es": "El recubrimiento cerámico es un proceso muy detallado. El precio se da únicamente después de visitar y revisar muy bien la pintura de tu carro. La visita de inspección es gratis."
+      },
+      "duration_min": {
+        "sedan": 480,
+        "suv": 540,
+        "truck": 600
+      },
+      "media": {
+        "video": "/services/ceramic_coating.mp4",
+        "poster": "/services/ceramic_coating.webp",
+        "photos": [
+          "/services/finished-suv.webp"
+        ]
+      },
+      "pricing": "inspection",
+      "inspection": {
+        "duration_min": 30,
+        "price": 0
+      }
+    },
+    {
+      "id": "oil_change",
+      "icon": "🛢️",
+      "category": "maintenance",
+      "provisional": false,
+      "name": {
+        "en": "Mobile Synthetic Oil Change",
+        "es": "Cambio de Aceite Sintético a Domicilio"
+      },
+      "tagline": {
+        "en": "Your oil change done in your driveway.",
+        "es": "Tu cambio de aceite hecho en tu casa."
+      },
+      "description": {
+        "en": "We change your oil with full synthetic oil and a new filter wherever you are. We check fluid levels and tire pressure, reset the maintenance reminder, and take the used oil for proper recycling. We record the mileage so the Nexus app reminds you when the next change is due.",
+        "es": "Cambiamos el aceite con aceite 100% sintético y filtro nuevo donde estés. Revisamos los niveles de líquidos y la presión de las llantas, reiniciamos el aviso de mantenimiento y nos llevamos el aceite usado para reciclarlo correctamente. Registramos el millaje para que la app de Nexus te avise cuándo te toca el próximo cambio."
+      },
+      "ideal_for": {
+        "en": "Synthetic oil lasts about 7,500–10,000 miles or 4–6 months, whichever comes first.",
+        "es": "El aceite sintético dura unas 7,500–10,000 millas o 4–6 meses, lo que llegue primero."
+      },
+      "notes": {
+        "en": "Price includes up to 5 quarts and a standard filter. Each extra quart is $10. Special filters may cost extra.",
+        "es": "El precio incluye hasta 5 cuartos y filtro estándar. Cada cuarto adicional cuesta $10. Filtros especiales pueden tener costo adicional."
+      },
+      "duration_min": {
+        "sedan": 30,
+        "suv": 35,
+        "truck": 40
+      },
+      "media": {
+        "video": "/services/oil_change.mp4",
+        "poster": "/services/oil_change.webp",
+        "photos": []
+      },
+      "price": {
+        "sedan": 110,
+        "suv": 120,
+        "truck": 130
+      },
+      "interval_miles": 7500,
+      "life": {
+        "due_miles": 7500,
+        "max_miles": 10000,
+        "due_months": 4,
+        "max_months": 6
+      }
+    },
+    {
+      "id": "nexus_plus",
+      "icon": "⚡",
+      "category": "combo",
+      "provisional": false,
+      "combo_of": [
+        "essential_wash",
+        "oil_change"
+      ],
+      "bonus": "engine_bay_wash",
+      "name": {
+        "en": "Nexus Plus",
+        "es": "Nexus Plus"
+      },
+      "tagline": {
+        "en": "Wash + synthetic oil change in one visit — engine bay cleaning FREE, only in this combo.",
+        "es": "Lavado + cambio de aceite sintético en una visita — lavado de motor GRATIS, solo en este combo."
+      },
+      "description": {
+        "en": "The complete maintenance visit: Essential Wash plus a full synthetic oil change, and we add an engine bay cleaning for free. The free engine bay cleaning is only included in this combo. One appointment, your car clean inside, outside and under the hood.",
+        "es": "La visita de mantenimiento completa: Lavado Esencial más cambio de aceite 100% sintético, y te regalamos el lavado del motor. El lavado de motor gratis solo viene en este combo. Una sola cita y tu carro queda limpio por dentro, por fuera y bajo el capó."
+      },
+      "ideal_for": {
+        "en": "Anyone due for an oil change who also wants a clean car.",
+        "es": "Quien ya necesita cambio de aceite y además quiere su carro limpio."
+      },
+      "duration_min": {
+        "sedan": 85,
+        "suv": 100,
+        "truck": 110
+      },
+      "media": {
+        "video": "/services/oil_change.mp4",
+        "poster": "/services/oil_change.webp",
+        "photos": [
+          "/services/truck-wheels.webp",
+          "/services/foam-suv.webp"
+        ]
+      },
+      "price": {
+        "sedan": 170,
+        "suv": 190,
+        "truck": 210
+      }
+    }
+  ],
+  "addons": [
+    {
+      "id": "engine_bay_wash",
+      "provisional": false,
+      "name": {
+        "en": "Engine Bay Cleaning",
+        "es": "Lavado de Motor"
+      },
+      "description": {
+        "en": "Safe degreasing and dressing of the engine bay.",
+        "es": "Desengrase seguro y acabado del compartimiento del motor."
+      },
+      "duration_min": 20,
+      "price": {
+        "sedan": 45,
+        "suv": 45,
+        "truck": 45
+      }
+    },
+    {
+      "id": "pet_hair",
+      "provisional": false,
+      "name": {
+        "en": "Pet Hair Removal",
+        "es": "Remoción de Pelo de Mascota"
+      },
+      "description": {
+        "en": "Extra time and tools to pull embedded pet hair out of carpets and seats.",
+        "es": "Tiempo y herramientas extra para sacar el pelo de mascota incrustado en alfombras y asientos."
+      },
+      "duration_min": 30,
+      "price": {
+        "sedan": 45,
+        "suv": 45,
+        "truck": 45
+      }
+    }
+  ],
+  "_nota_media": "Rutas de media relativas a la app (app/public/services).",
+  "_precios_actualizados": "2026-10-01: todos los precios confirmados por la dueña. Aceite: SOLO sintético (110/120/130). Nexus Plus 170/190/210 con lavado de motor gratis solo en el combo. Cerámico: solo tras inspección."
+}

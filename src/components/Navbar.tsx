@@ -44,10 +44,9 @@ export default function Navbar() {
   const isPW = pathname.startsWith("/pressure-washing");
 
   const links = [
-    { href: "#services",  label: T({ en: "Services",         es: "Servicios" }) },
-    { href: "#packages",  label: T({ en: "Packages",         es: "Paquetes" }) },
-    { href: "#gallery",   label: T({ en: "Gallery",          es: "Galería" }) },
-    { href: "#app",       label: T({ en: "App",              es: "App" }) },
+    { href: "/#services", label: T({ en: "Services", es: "Servicios" }) },
+    { href: "/#app",      label: T({ en: "App",              es: "App" }) },
+    { href: "/#gallery",  label: T({ en: "Gallery",          es: "Galería" }) },
     { href: "/pressure-washing", label: T({ en: "Pressure Washing", es: "Lavado a Presión" }) },
   ];
 

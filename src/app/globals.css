@@ -12,7 +12,8 @@
   --border: rgba(26,174,222,0.15);
 }
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* El reset va en la capa base: así no anula los espacios (márgenes/rellenos) de cada sección */
+@layer base { *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; } }
 html { scroll-behavior: auto; }
 body {
   background: var(--navy);
@@ -85,3 +86,9 @@ body {
 }
 .ribbon-badge:hover{transform:scale(1.15) rotate(-3deg);filter:drop-shadow(0 8px 20px rgba(26,174,222,.4));}
 .shimmer-text{background:linear-gradient(90deg,var(--white) 0%,var(--cyan) 30%,var(--white) 60%,var(--white) 100%);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 4s linear infinite;}
+
+/* Celular: textos de encabezado más compactos y anclas que no quedan bajo el menú */
+@media (max-width: 640px) {
+  .OL-hero { font-size: .66rem; letter-spacing: .28em; }
+}
+section[id] { scroll-margin-top: 84px; }

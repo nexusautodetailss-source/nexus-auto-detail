@@ -119,17 +119,17 @@ export default function Team() {
         <div className="absolute inset-0 bg-gradient-to-b from-[#030A14]/60 via-transparent to-[#030A14]" />
       </div>
 
-      <div className="relative z-10 px-[6vw] py-28 flex flex-col items-center text-center">
+      <div className="relative z-10 px-[5vw] py-20 md:py-28 flex flex-col items-center text-center">
 
         {/* HEADER */}
         <div ref={headerRef} className="mb-10">
           <div className="OL mb-5">{T({ en: "Dedication · Precision · Excellence", es: "Dedicación · Precisión · Excelencia" })}</div>
           <div className="D text-[clamp(4.5rem,11vw,10rem)] g-blue leading-[.82]">CHIDO</div>
           <div className="D text-[clamp(4.5rem,11vw,10rem)] text-[var(--white)] leading-[.82]">&amp; ADELA</div>
-          <p className="mt-8 text-[1.3rem] text-[var(--gray)] leading-relaxed max-w-[640px] mx-auto">
+          <p className="mt-6 text-[1.05rem] md:text-[1.25rem] text-[var(--gray)] leading-relaxed max-w-[560px] mx-auto">
             {T({
-              en: "Chido & Adela bring an unmatched level of care, precision, and commitment to every vehicle they work on. For them, detailing isn't just a service — it's a craft refined year after year, always raising the bar, never settling for anything less than perfect.",
-              es: "Chido y Adela aportan un nivel incomparable de cuidado, precisión y compromiso a cada vehículo. Para ellos el detallado no es solo un servicio — es un oficio perfeccionado año tras año, siempre elevando el estándar, nunca conformándose con menos que la perfección.",
+              en: "The owners themselves take care of your car. For them, detailing is a craft refined year after year — never settling for less than perfect.",
+              es: "Los dueños cuidan tu carro personalmente. Para ellos el detallado es un oficio perfeccionado año tras año, sin conformarse con menos que la perfección.",
             })}
           </p>
         </div>
