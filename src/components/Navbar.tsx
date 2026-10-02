@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useLang } from "@/lib/LangContext";
 import { Menu, X, Phone, ChevronLeft } from "lucide-react";
 
-const PHONE = "(678) 882-6689";
+const PHONE = "(470) 492-1077";
 
 type Lang = "en" | "es";
 function LangToggle({ lang, setLang }: { lang: Lang; setLang: (l: Lang) => void }) {
@@ -147,7 +147,7 @@ export default function Navbar() {
             ))
           )}
           <div className="rule" />
-          <a href="tel:+16788826689" className="flex items-center gap-2 text-[var(--blue)] text-[.9rem] font-semibold">
+          <a href="tel:+14704921077" className="flex items-center gap-2 text-[var(--blue)] text-[.9rem] font-semibold">
             <Phone size={15} /> {PHONE}
           </a>
           <div className="flex items-center gap-4">

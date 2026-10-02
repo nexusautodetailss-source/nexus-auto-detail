@@ -5,7 +5,7 @@ import { Phone, MapPin, Clock, MessageCircle, ChevronRight, ChevronLeft, Check }
 
 
 const INFO = [
-  { icon: Phone,  label: { en: "Call Us",       es: "Llámanos" },        value: "(678) 882-6689",             href: "tel:+16788826689" },
+  { icon: Phone,  label: { en: "Call Us",       es: "Llámanos" },        value: "(470) 492-1077",             href: "tel:+14704921077" },
   { icon: MapPin, label: { en: "Service Area",  es: "Área de Servicio" }, value: "Lawrenceville, GA · 40 mi", href: null },
   { icon: Clock,  label: { en: "Hours",         es: "Horario" },          value: "Mon–Sat · By Appointment",  href: null },
 ];

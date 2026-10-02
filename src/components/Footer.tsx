@@ -135,7 +135,7 @@ export default function Footer() {
           <div className="flex flex-col items-center sm:items-start">
             <div className="OL mb-5">{T({ en: "Contact", es: "Contacto" })}</div>
             <div className="flex flex-col gap-4 items-center sm:items-start">
-              <a href="tel:+16788826689"
+              <a href="tel:+14704921077"
                 className="flex items-center gap-3 group transition-colors duration-200 hover:text-[var(--white)]"
                 style={{ color: "var(--gray)" }}>
                 <div className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-200 group-hover:bg-[rgba(26,174,222,0.2)] group-hover:scale-110"
@@ -144,7 +144,7 @@ export default function Footer() {
                 </div>
                 <div>
                   <div className="text-[.65rem] text-[var(--blue)] font-bold tracking-wider uppercase mb-0.5">{T({ en: "Call", es: "Llamar" })}</div>
-                  <div className="text-[.9rem] font-semibold">(678) 882-6689</div>
+                  <div className="text-[.9rem] font-semibold">(470) 492-1077</div>
                 </div>
               </a>
               <div className="flex items-start gap-3" style={{ color: "var(--gray)" }}>

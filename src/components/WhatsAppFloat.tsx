@@ -1,99 +1,50 @@
 "use client";
-import { useEffect, useState } from "react";
-import { MessageCircle, X } from "lucide-react";
+import { MessageSquare, Phone } from "lucide-react";
 import { useLang } from "@/lib/LangContext";
 
-const WA_URL  = "https://wa.me/16788826689?text=" + encodeURIComponent("Hi! I'd like to book an appointment with Nexus Auto Detail.");
+// Línea de Nexus atendida por Max (agente de voz): contesta 24/7 en inglés y español y agenda directo.
+export const CALL_NUMBER = "+14704921077";
+export const CALL_DISPLAY = "(470) 492-1077";
+
+// Los mensajes de texto siguen llegando al número de siempre de Nexus.
 const SMS_URL = "sms:+16788826689?body=" + encodeURIComponent("Hi! I'd like to book an appointment with Nexus Auto Detail.");
 
-function SmsIcon() {
-  return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-    </svg>
-  );
-}
-
+/** Botones flotantes: llamar (lo atiende Max) y mensaje de texto al número de Nexus. */
 export default function WhatsAppFloat() {
   const { T } = useLang();
-  const [showPopup, setShowPopup] = useState(false);
-  const [dismissed, setDismissed] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      if (!dismissed) setShowPopup(true);
-    }, 3000);
-    return () => clearTimeout(timer);
-  }, [dismissed]);
-
   return (
-    <div className="fixed bottom-5 right-4 md:bottom-6 md:right-6 z-50 flex flex-col items-end gap-3">
-
-      {/* Popup card — hidden on mobile */}
-      {showPopup && !dismissed && (
-        <div className="hidden md:block gc p-5 max-w-[270px] shadow-2xl" style={{ animation: "fadeInUp .4s ease" }}>
-          <div className="flex items-start justify-between gap-2 mb-2">
-            <div className="text-[.78rem] font-bold text-[var(--white)]">
-              {T({ en: "Book your detail!", es: "¡Reserva tu detalle!" })}
-            </div>
-            <button onClick={() => { setDismissed(true); setShowPopup(false); }} className="text-[var(--gray)] hover:text-[var(--white)] mt-0.5">
-              <X size={14} />
-            </button>
-          </div>
-          <p className="text-[.7rem] text-[var(--gray)] mb-4 leading-relaxed">
-            {T({ en: "Chat with Chido & Adela and book in minutes!", es: "Chatea con Chido y Adela — reserva en minutos!" })}
-          </p>
-          <div className="flex flex-col gap-2">
-            <a href={WA_URL} target="_blank" rel="noreferrer"
-              className="btn w-full justify-center py-2.5 px-4 text-[.72rem]"
-              style={{ background: "#25D366", color: "#fff", boxShadow: "0 4px 20px rgba(37,211,102,.3)" }}>
-              <MessageCircle size={14} />
-              WhatsApp
-            </a>
-            <a href={SMS_URL}
-              className="btn w-full justify-center py-2.5 px-4 text-[.72rem]"
-              style={{ background: "var(--blue)", color: "#fff", boxShadow: "0 4px 20px rgba(26,174,222,.3)" }}>
-              <SmsIcon />
-              {T({ en: "Text Message", es: "Mensaje de Texto" })}
-            </a>
-          </div>
-        </div>
-      )}
-
-      {/* SMS button */}
-      <a
-        href={SMS_URL}
-        className="hidden md:flex rounded-full items-center justify-center shadow-xl transition-all hover:scale-110 relative"
-        style={{
-          width: "52px", height: "52px",
-          background: "var(--blue)",
-          boxShadow: "0 4px 24px rgba(26,174,222,.45)"
-        }}
-        aria-label="SMS"
-        title="Text Message"
-      >
-        <SmsIcon />
-        <span className="absolute inset-0 rounded-full text-white flex items-center justify-center pointer-events-none"
-          style={{ border: "2px solid rgba(26,174,222,.6)", animation: "pulse-ring 2.4s ease infinite" }} />
-      </a>
-
-      {/* WhatsApp button */}
-      <a
-        href={WA_URL}
-        target="_blank"
-        rel="noreferrer"
-        className="rounded-full flex items-center justify-center shadow-2xl transition-all hover:scale-110 relative"
-        style={{
-          width: "58px", height: "58px",
-          background: "#25D366",
-          boxShadow: "0 4px 30px rgba(37,211,102,.45)"
-        }}
-        aria-label="WhatsApp"
-      >
-        <MessageCircle size={28} className="text-white" />
-        <span className="absolute inset-0 rounded-full pointer-events-none"
-          style={{ border: "2px solid #25D366", animation: "pulse-ring 2s ease infinite" }} />
-      </a>
+    <div className="fixed bottom-5 right-4 md:bottom-6 md:right-6 z-50 flex items-center gap-3">
+    <a
+      href={SMS_URL}
+      className="flex items-center justify-center rounded-full shadow-xl transition-all hover:scale-105"
+      style={{ width: 52, height: 52, background: "rgba(3,10,20,.92)", color: "var(--blue)",
+               border: "1.5px solid var(--blue)", boxShadow: "0 4px 24px rgba(26,174,222,.3)" }}
+      aria-label={T({ en: "Text message", es: "Mensaje de texto" })}
+      title={T({ en: "Text message", es: "Mensaje de texto" })}
+    >
+      <MessageSquare size={22} />
+    </a>
+    <a
+      href={`tel:${CALL_NUMBER}`}
+      className="flex items-center gap-2 rounded-full shadow-2xl transition-all hover:scale-105"
+      style={{
+        padding: "14px 20px 14px 16px",
+        background: "var(--blue)",
+        color: "#fff",
+        boxShadow: "0 4px 30px rgba(26,174,222,.45)",
+      }}
+      aria-label={T({ en: `Call ${CALL_DISPLAY}`, es: `Llamar al ${CALL_DISPLAY}` })}
+    >
+      <span className="relative flex items-center justify-center">
+        <Phone size={20} />
+        <span className="absolute rounded-full pointer-events-none"
+          style={{ inset: -8, border: "2px solid rgba(255,255,255,.55)", animation: "pulse-ring 2s ease infinite" }} />
+      </span>
+      <span className="text-[.85rem] font-bold leading-tight">
+        <span className="block text-[.65rem] font-semibold opacity-80">{T({ en: "Call · 24/7", es: "Llámanos · 24/7" })}</span>
+        {CALL_DISPLAY}
+      </span>
+    </a>
     </div>
   );
 }

@@ -366,8 +366,8 @@ export default function PressureWashing() {
               </svg>
               {T({ en: "Text Us", es: "Escríbenos" })}
             </a>
-            <a href="tel:+16788826689" className="btn btn-ghost justify-center">
-              (678) 882-6689
+            <a href="tel:+14704921077" className="btn btn-ghost justify-center">
+              (470) 492-1077
             </a>
           </div>
 
@@ -448,8 +448,8 @@ export default function PressureWashing() {
               </svg>
               {T({ en: "Text Us", es: "Escríbenos" })}
             </a>
-            <a href="tel:+16788826689" className="btn btn-ghost justify-center">
-              (678) 882-6689
+            <a href="tel:+14704921077" className="btn btn-ghost justify-center">
+              (470) 492-1077
             </a>
           </div>
         </div>
