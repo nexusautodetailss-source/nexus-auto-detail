@@ -98,17 +98,23 @@ export default function Hero() {
           <div className="OL mb-5">{T({ en: "Best of Gwinnett", es: "Mejor de Gwinnett" })}</div>
 
           {/* Celular: una sola fila que se desliza */}
-          <div className="flex gap-3 overflow-x-auto pb-2 md:hidden" style={{ scrollbarWidth: "none" }}>
-            {AWARDS.map(({ year, img }, i) => (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                key={year}
-                src={img}
-                alt={`Best of Gwinnett ${year}`}
-                className="ribbon-badge h-auto w-[68px] flex-shrink-0 object-contain"
-                style={{ animationDelay: `${i * 0.12}s` }}
-              />
-            ))}
+          {/* Celular: las medallas pasan solas en loop infinito (la lista va dos veces y se mueve -50%) */}
+          <div className="overflow-hidden pb-2 md:hidden"
+               style={{ maskImage: "linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent)",
+                        WebkitMaskImage: "linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent)" }}>
+            <div className="flex w-max" style={{ animation: "marq 22s linear infinite" }}>
+              {[...AWARDS, ...AWARDS].map(({ year, img }, i) => (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  key={`${year}-${i}`}
+                  src={img}
+                  alt={i < AWARDS.length ? `Best of Gwinnett ${year}` : ""}
+                  aria-hidden={i >= AWARDS.length}
+                  className="h-auto w-[68px] flex-shrink-0 object-contain"
+                  style={{ marginRight: 12 }}
+                />
+              ))}
+            </div>
           </div>
 
           {/* Desktop: single row */}
