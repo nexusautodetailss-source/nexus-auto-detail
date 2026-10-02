@@ -5,6 +5,8 @@ import Services from "@/components/Services";
 import WashReveal from "@/components/WashReveal";
 import Gallery from "@/components/Gallery";
 import Packages from "@/components/Packages";
+import AppPromo from "@/components/AppPromo";
+import AppPopup from "@/components/AppPopup";
 import Booking from "@/components/Booking";
 import Footer from "@/components/Footer";
 
@@ -17,9 +19,11 @@ export default function Home() {
       <Services />
       <WashReveal />
       <Packages />
+      <AppPromo />
       <Booking />
       <Gallery />
       <Footer />
+      <AppPopup />
     </main>
   );
 }
